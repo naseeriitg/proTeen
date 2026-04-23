@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>proTeen — Kashmir Walnut · Brain & Heart</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Bebas+Neue&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C8900A;
+  --gold-lt: #E0B040;
+  --cream: #F5EFE0;
+  --green-dk: #0F1E0F;
+  --green-md: #1A3020;
+  --green-lt: #2D5035;
+  --snow: #F8F4EC;
+  --brown: #3A1E08;
+  --bg: #080D08;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(200,144,10,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s;
+}
+.cursor.hover { width: 20px; height: 20px; }
+.cursor-ring.hover { width: 56px; height: 56px; border-color: var(--gold); }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(8,13,8,0.95) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.4s;
+}
+nav.scrolled { backdrop-filter: blur(20px); background: rgba(8,13,8,0.88); }
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 1px;
+}
+.nav-brand em { color: var(--gold); font-style: italic; }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.55);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,144,10,0.4);
+  padding: 9px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+/* ══════════════════════════════
+   HERO SECTION
+══════════════════════════════ */
+#hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kashmir mountain SVG background */
+.kashmir-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Parallax mountain layers */
+.mtn-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  animation: heroFade 1.4s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.3s;
+}
+@keyframes heroFade {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 9vw, 130px);
+  font-weight: 700;
+  line-height: 0.88;
+  color: var(--cream);
+  text-shadow: 0 4px 60px rgba(0,0,0,0.6);
+  margin-bottom: 8px;
+}
+.hero-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 22px);
+  color: rgba(245,239,224,0.6);
+  letter-spacing: 2px;
+  margin-bottom: 48px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 52px;
+  justify-content: center;
+  margin-bottom: 52px;
+}
+.h-stat { text-align: center; }
+.h-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.h-stat-lbl {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.4);
+  margin-top: 4px;
+  font-weight: 300;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.btn-primary {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 14px 36px;
+  border: none;
+  cursor: none;
+  font-weight: 700;
+  transition: all 0.3s;
+  font-family: 'Jost', sans-serif;
+}
+.btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+.btn-ghost {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--cream);
+  padding: 14px 36px;
+  border: 1px solid rgba(245,239,224,0.2);
+  cursor: none;
+  font-family: 'Jost', sans-serif;
+  transition: all 0.3s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(8px)}
+}
+.scroll-hint span {
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(245,239,224,0.5), transparent);
+}
+
+/* ══════════════════════════════
+   KASHMIR STORY SECTION
+══════════════════════════════ */
+#story {
+  padding: 120px 52px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--bg) 0%, #0A1508 100%);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.story-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.story-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--cream);
+}
+.story-title em { color: var(--gold); font-style: italic; }
+.story-body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(245,239,224,0.6);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+.story-body strong { color: var(--cream); font-weight: 500; }
+
+.story-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pill {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,144,10,0.25);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 400;
+  background: rgba(200,144,10,0.06);
+}
+
+/* Kashmir map/visual right side */
+.story-visual {
+  position: relative;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-orb {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%,
+    rgba(45,80,53,0.8) 0%,
+    rgba(26,48,32,0.6) 40%,
+    rgba(15,30,15,0.3) 70%,
+    transparent 100%);
+  border: 1px solid rgba(200,144,10,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: orbFloat 6s ease-in-out infinite;
+}
+@keyframes orbFloat {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+.orb-inner {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.6;
+  padding: 24px;
+}
+.orb-stat {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  color: var(--cream);
+  line-height: 1;
+  display: block;
+}
+.story-ring1, .story-ring2 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200,144,10,0.1);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+.story-ring1 { width: 400px; height: 400px; }
+.story-ring2 { width: 480px; height: 480px; animation-delay: 1s; border-color: rgba(200,144,10,0.06); }
+@keyframes ringPulse {
+  0%,100%{opacity:0.5;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.02)}
+}
+
+/* Floating walnut bits */
+.float-badge {
+  position: absolute;
+  background: rgba(15,30,15,0.9);
+  border: 1px solid rgba(200,144,10,0.2);
+  padding: 12px 18px;
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+}
+.float-badge .fb-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+.float-badge .fb-lbl {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.4);
+  margin-top: 2px;
+  display: block;
+}
+.fb-top { top: 40px; right: 0; }
+.fb-bot { bottom: 60px; left: 10px; }
+.fb-mid { top: 50%; right: -30px; transform: translateY(-50%); }
+
+/* ══════════════════════════════
+   PRODUCTS SECTION
+══════════════════════════════ */
+#products {
+  padding: 100px 52px 120px;
+  position: relative;
+  background: linear-gradient(to bottom, #0A1508 0%, #080D08 60%, #0A0D06 100%);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.section-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+  opacity: 0.8;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.1;
+}
+.section-title em { color: var(--gold); font-style: italic; }
+
+/* Product cards */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: none;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  border: 1px solid rgba(200,144,10,0.1);
+  background: rgba(15,30,15,0.4);
+}
+.product-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(200,144,10,0.3);
+}
+
+/* Card backgrounds per variant */
+.pc-1 { background: linear-gradient(145deg, #162812 0%, #0E1C0C 50%, #080D08 100%); }
+.pc-2 { background: linear-gradient(145deg, #0A0808 0%, #0E0C0A 50%, #080808 100%); }
+.pc-3 { background: linear-gradient(145deg, #100C04 0%, #0C0A06 50%, #080806 100%); }
+
+.card-glow {
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  right: -40px; top: -40px;
+  pointer-events: none;
+}
+.pc-1 .card-glow { background: radial-gradient(circle, rgba(45,120,45,0.25) 0%, transparent 70%); }
+.pc-2 .card-glow { background: radial-gradient(circle, rgba(30,15,80,0.3) 0%, transparent 70%); }
+.pc-3 .card-glow { background: radial-gradient(circle, rgba(200,120,10,0.2) 0%, transparent 70%); }
+
+.card-body { padding: 32px 28px 28px; position: relative; z-index: 2; }
+
+.card-tag {
+  display: inline-block;
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.pc-1 .card-tag { background: rgba(45,120,45,0.15); color: #6AE070; border: 1px solid rgba(45,120,45,0.25); }
+.pc-2 .card-tag { background: rgba(120,80,210,0.15); color: #B090FF; border: 1px solid rgba(120,80,210,0.25); }
+.pc-3 .card-tag { background: rgba(200,144,10,0.12); color: var(--gold-lt); border: 1px solid rgba(200,144,10,0.2); }
+
+/* Product waffle visual */
+.card-product-visual {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 -28px;
+}
+
+.card-info { padding-top: 20px; }
+.card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.card-sub {
+  font-size: 11px;
+  color: rgba(245,239,224,0.4);
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  font-weight: 300;
+}
+
+.card-macros {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.macro {
+  text-align: center;
+  flex: 1;
+  padding: 10px 0;
+  border-top: 1px solid rgba(245,239,224,0.08);
+}
+.macro-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  display: block;
+}
+.pc-1 .macro-val { color: #6AE070; }
+.pc-2 .macro-val { color: #B090FF; }
+.pc-3 .macro-val { color: var(--gold-lt); }
+.macro-lbl {
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.35);
+  margin-top: 3px;
+  display: block;
+  font-weight: 400;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--cream);
+}
+.card-price span { font-size: 13px; font-weight: 300; color: rgba(245,239,224,0.4); }
+
+.card-btn {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  cursor: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+.pc-1 .card-btn { background: rgba(106,224,112,0.1); color: #6AE070; border: 1px solid rgba(106,224,112,0.25); }
+.pc-1 .card-btn:hover { background: #6AE070; color: var(--bg); }
+.pc-2 .card-btn { background: rgba(176,144,255,0.1); color: #B090FF; border: 1px solid rgba(176,144,255,0.25); }
+.pc-2 .card-btn:hover { background: #B090FF; color: var(--bg); }
+.pc-3 .card-btn { background: rgba(200,144,10,0.1); color: var(--gold-lt); border: 1px solid rgba(200,144,10,0.25); }
+.pc-3 .card-btn:hover { background: var(--gold); color: var(--bg); }
+
+/* ══════════════════════════════
+   WHY PROTEEN SECTION
+══════════════════════════════ */
+#why {
+  padding: 100px 52px;
+  background: linear-gradient(to bottom, #0A0D06 0%, #080D08 100%);
+  position: relative;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  max-width: 1200px;
+  margin: 60px auto 0;
+}
+.why-card {
+  background: rgba(15,30,15,0.3);
+  padding: 40px 28px;
+  border: 1px solid rgba(200,144,10,0.06);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.why-card:hover::before { opacity: 1; }
+.why-card:hover { background: rgba(20,40,20,0.5); }
+.why-icon {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+.why-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.why-body {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: rgba(245,239,224,0.5);
+  font-weight: 300;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  padding: 60px 52px 40px;
+  border-top: 1px solid rgba(200,144,10,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cream);
+}
+.footer-brand em { color: var(--gold); font-style: italic; }
+.footer-copy {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(245,239,224,0.2);
+}
+.footer-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.3);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ══════════════════════════════
+   MODAL — product detail
+══════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(4,8,4,0.92);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  padding: 24px;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal {
+  background: linear-gradient(145deg, #0E1C0C, #0A1208);
+  border: 1px solid rgba(200,144,10,0.2);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 52px;
+  position: relative;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+.modal-close {
+  position: absolute;
+  top: 22px; right: 22px;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200,144,10,0.2);
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(245,239,224,0.5);
+  cursor: none;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.modal-close:hover { border-color: var(--gold); color: var(--gold); }
+
+.modal-tag {
+  display: inline-block;
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.modal-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.modal-subname {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.modal-desc {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: rgba(245,239,224,0.65);
+  font-weight: 300;
+  margin-bottom: 36px;
+  border-left: 2px solid rgba(200,144,10,0.3);
+  padding-left: 20px;
+}
+
+.modal-section-title {
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+
+.modal-benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.benefit-item {
+  background: rgba(20,40,20,0.4);
+  border: 1px solid rgba(200,144,10,0.1);
+  padding: 16px 18px;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.benefit-icon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.benefit-text {}
+.benefit-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+}
+.benefit-desc {
+  font-size: 11px;
+  color: rgba(245,239,224,0.45);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.modal-ingredients {
+  background: rgba(10,15,10,0.6);
+  border: 1px solid rgba(200,144,10,0.1);
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin-bottom: 28px;
+}
+.ingr-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ingr-tag {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  border: 1px solid rgba(200,144,10,0.2);
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(200,144,10,0.06);
+}
+
+.modal-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(200,144,10,0.08);
+  border: 1px solid rgba(200,144,10,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.m-macro {
+  background: rgba(10,15,10,0.8);
+  padding: 18px;
+  text-align: center;
+}
+.m-macro-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+.m-macro-lbl {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.3);
+  margin-top: 4px;
+  display: block;
+}
+
+/* ── GRAIN OVERLAY ── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <div class="nav-brand">pro<em>Teen</em></div>
+  <ul class="nav-links">
+    <li><a href="#story">Kashmir</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+  </ul>
+  <a href="#products" class="nav-cta">Shop Now</a>
+</nav>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section id="hero">
+  <!-- Kashmir mountain background SVG -->
+  <div class="kashmir-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Sky gradient — Kashmir pre-dawn -->
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#020806"/>
+          <stop offset="35%" stop-color="#040D08"/>
+          <stop offset="65%" stop-color="#071408"/>
+          <stop offset="100%" stop-color="#0A1C0C"/>
+        </linearGradient>
+        <!-- Snow highlight gradient -->
+        <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E8F0E0" stop-opacity="0.92"/>
+          <stop offset="60%" stop-color="#C8D8C0" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#8AA890" stop-opacity="0.4"/>
+        </linearGradient>
+        <!-- Mountain 2 gradient -->
+        <linearGradient id="mtn2Grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1A2C18" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#0E1C0C" stop-opacity="1"/>
+        </linearGradient>
+        <!-- Mountain 3 (foreground) gradient -->
+        <linearGradient id="mtn3Grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0E1A0C" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#080D08" stop-opacity="1"/>
+        </linearGradient>
+        <!-- Aurora glow -->
+        <radialGradient id="aurora1" cx="30%" cy="40%" r="40%">
+          <stop offset="0%" stop-color="#1A4020" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#1A4020" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="aurora2" cx="70%" cy="35%" r="35%">
+          <stop offset="0%" stop-color="#204818" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#204818" stop-opacity="0"/>
+        </radialGradient>
+        <!-- Gold horizon glow -->
+        <radialGradient id="horizonGlow" cx="50%" cy="72%" r="40%">
+          <stop offset="0%" stop-color="#8A5808" stop-opacity="0.45"/>
+          <stop offset="60%" stop-color="#4A2C04" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Sky -->
+      <rect width="1440" height="900" fill="url(#skyGrad)"/>
+
+      <!-- Aurora layers -->
+      <ellipse cx="430" cy="360" rx="580" ry="220" fill="url(#aurora1)"/>
+      <ellipse cx="1010" cy="315" rx="500" ry="180" fill="url(#aurora2)"/>
+
+      <!-- Horizon golden glow -->
+      <ellipse cx="720" cy="648" rx="580" ry="160" fill="url(#horizonGlow)"/>
+
+      <!-- Stars — scattered -->
+      <g opacity="0.75">
+        <circle cx="80"  cy="48"  r="1.2" fill="white" opacity="0.8"/>
+        <circle cx="155" cy="82"  r="0.8" fill="white" opacity="0.6"/>
+        <circle cx="230" cy="32"  r="1.0" fill="white" opacity="0.9"/>
+        <circle cx="320" cy="65"  r="0.7" fill="white" opacity="0.5"/>
+        <circle cx="410" cy="40"  r="1.3" fill="white" opacity="0.85"/>
+        <circle cx="490" cy="90"  r="0.8" fill="white" opacity="0.6"/>
+        <circle cx="570" cy="25"  r="1.1" fill="white" opacity="0.75"/>
+        <circle cx="650" cy="72"  r="0.9" fill="white" opacity="0.65"/>
+        <circle cx="730" cy="38"  r="1.4" fill="white" opacity="0.9"/>
+        <circle cx="820" cy="60"  r="0.8" fill="white" opacity="0.55"/>
+        <circle cx="900" cy="30"  r="1.2" fill="white" opacity="0.8"/>
+        <circle cx="980" cy="78"  r="0.7" fill="white" opacity="0.5"/>
+        <circle cx="1060" cy="44" r="1.0" fill="white" opacity="0.7"/>
+        <circle cx="1150" cy="68" r="1.3" fill="white" opacity="0.85"/>
+        <circle cx="1230" cy="28" r="0.8" fill="white" opacity="0.6"/>
+        <circle cx="1310" cy="55" r="1.1" fill="white" opacity="0.75"/>
+        <circle cx="1390" cy="40" r="0.9" fill="white" opacity="0.65"/>
+        <circle cx="120"  cy="130" r="0.7" fill="white" opacity="0.45"/>
+        <circle cx="260"  cy="108" r="1.0" fill="white" opacity="0.6"/>
+        <circle cx="440"  cy="118" r="0.8" fill="white" opacity="0.5"/>
+        <circle cx="620"  cy="110" r="1.1" fill="white" opacity="0.7"/>
+        <circle cx="800"  cy="125" r="0.7" fill="white" opacity="0.45"/>
+        <circle cx="960"  cy="105" r="0.9" fill="white" opacity="0.55"/>
+        <circle cx="1120" cy="120" r="1.0" fill="white" opacity="0.6"/>
+        <circle cx="1290" cy="100" r="0.8" fill="white" opacity="0.5"/>
+        <!-- Bright star with glow -->
+        <circle cx="720" cy="58" r="2.2" fill="white" opacity="0.95"/>
+        <circle cx="720" cy="58" r="5" fill="white" opacity="0.12"/>
+        <circle cx="185" cy="55" r="1.8" fill="#E0D0A0" opacity="0.9"/>
+        <circle cx="1255" cy="70" r="1.8" fill="#D0E0A8" opacity="0.85"/>
+      </g>
+
+      <!-- Far mountain range — tallest peaks (snow-capped) -->
+      <!-- Snow caps first (bright) -->
+      <path d="
+        M -20 520
+        L 0 480 L 60 390 L 90 350 L 110 370 L 140 300 L 170 260 L 200 290 L 225 240 L 260 200 L 290 235 L 320 195 L 360 240 L 390 210 L 430 170 L 470 200 L 500 165 L 535 185 L 565 148 L 600 178 L 640 140 L 675 168 L 710 132 L 745 158 L 780 125 L 815 148 L 850 118 L 885 145 L 920 112 L 955 138 L 990 108 L 1025 132 L 1060 115 L 1100 140 L 1140 118 L 1180 148 L 1220 128 L 1260 158 L 1300 135 L 1340 165 L 1380 148 L 1420 172 L 1460 155 L 1460 520 Z"
+        fill="#3A5835" opacity="0.6"/>
+
+      <!-- Snow highlights on peaks -->
+      <path d="
+        M 225 240 L 260 200 L 280 218 L 295 232
+        M 430 170 L 470 200 L 450 188
+        M 565 148 L 600 178 L 580 165
+        M 710 132 L 745 158 L 727 145
+        M 780 125 L 815 148 L 797 135
+        M 850 118 L 885 145 L 867 130
+        M 920 112 L 955 138 L 937 124
+        M 990 108 L 1025 132 L 1007 118
+        M 1060 115 L 1100 140 L 1080 126"
+        stroke="url(#snowGrad)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Snow patches on far mountains -->
+      <path d="M 255 205 L 265 200 L 275 208 L 270 215 L 258 212 Z" fill="url(#snowGrad)" opacity="0.85"/>
+      <path d="M 427 174 L 440 170 L 452 178 L 445 186 L 430 182 Z" fill="url(#snowGrad)" opacity="0.8"/>
+      <path d="M 560 152 L 574 148 L 585 155 L 578 163 L 563 159 Z" fill="url(#snowGrad)" opacity="0.82"/>
+      <path d="M 706 136 L 720 132 L 732 140 L 724 148 L 709 144 Z" fill="url(#snowGrad)" opacity="0.88"/>
+      <path d="M 776 128 L 790 124 L 802 132 L 794 140 L 779 137 Z" fill="url(#snowGrad)" opacity="0.9"/>
+      <path d="M 846 121 L 862 117 L 874 124 L 866 133 L 849 130 Z" fill="url(#snowGrad)" opacity="0.88"/>
+      <path d="M 915 116 L 932 112 L 942 119 L 934 128 L 917 125 Z" fill="url(#snowGrad)" opacity="0.86"/>
+      <path d="M 985 112 L 1002 108 L 1012 116 L 1004 124 L 987 121 Z" fill="url(#snowGrad)" opacity="0.88"/>
+
+      <!-- Mid mountains — dark forest green -->
+      <path d="
+        M -20 620
+        L 0 570 L 50 510 L 100 470 L 150 490 L 200 440 L 250 410 L 300 445 L 350 400 L 400 430 L 450 388 L 500 420 L 550 375 L 600 405 L 650 365 L 700 395 L 750 355 L 800 382 L 850 345 L 900 375 L 950 340 L 1000 368 L 1050 335 L 1100 360 L 1150 335 L 1200 365 L 1250 340 L 1300 370 L 1350 350 L 1400 378 L 1460 355 L 1460 700 L -20 700 Z"
+        fill="url(#mtn2Grad)"/>
+
+      <!-- Foreground ridge — darkest -->
+      <path d="
+        M -20 750
+        L 0 680 L 80 640 L 160 660 L 240 620 L 320 645 L 400 610 L 480 638 L 560 605 L 640 630 L 720 598 L 800 625 L 880 595 L 960 618 L 1040 590 L 1120 615 L 1200 588 L 1280 612 L 1360 590 L 1460 610 L 1460 900 L -20 900 Z"
+        fill="url(#mtn3Grad)"/>
+
+      <!-- Ground / valley floor -->
+      <rect x="0" y="820" width="1440" height="80" fill="#060C06" opacity="0.95"/>
+
+      <!-- Wular Lake reflection — bottom centre -->
+      <ellipse cx="720" cy="850" rx="320" ry="28" fill="#0A1A10" opacity="0.7"/>
+      <ellipse cx="720" cy="848" rx="280" ry="18" fill="#0E2015" opacity="0.5"/>
+      <!-- Lake shimmer -->
+      <line x1="590" y1="845" x2="680" y2="845" stroke="rgba(200,144,10,0.2)" stroke-width="1"/>
+      <line x1="760" y1="848" x2="840" y2="848" stroke="rgba(200,144,10,0.15)" stroke-width="0.8"/>
+      <line x1="640" y1="852" x2="720" y2="852" stroke="rgba(200,144,10,0.12)" stroke-width="0.8"/>
+
+      <!-- Golden horizon mist -->
+      <rect x="0" y="580" width="1440" height="60" fill="url(#horizonGlow)" opacity="0.4"/>
+
+      <!-- Vertical god rays from top -->
+      <line x1="720" y1="0" x2="720" y2="600" stroke="rgba(200,144,10,0.04)" stroke-width="60"/>
+      <line x1="460" y1="0" x2="520" y2="600" stroke="rgba(200,144,10,0.025)" stroke-width="40"/>
+      <line x1="980" y1="0" x2="920" y2="600" stroke="rgba(200,144,10,0.025)" stroke-width="40"/>
+    </svg>
+  </div>
+
+  <!-- Hero text -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">From the Wular Valley · Kashmir · India</div>
+    <h1 class="hero-title">pro<em>Teen</em></h1>
+    <p class="hero-sub">Brain & Heart · Kashmir Walnut · Two Ingredients</p>
+
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="h-stat-num">5.4g</div>
+        <div class="h-stat-lbl">Omega-3 ALA per bar</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">3.4×</div>
+        <div class="h-stat-lbl">WHO Recommendation</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">2</div>
+        <div class="h-stat-lbl">Whole Ingredients</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">0g</div>
+        <div class="h-stat-lbl">Added Sugar</div>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore Products</button>
+      <button class="btn-ghost" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Our Kashmir Story</button>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     KASHMIR STORY
+══════════════════════════════ -->
+<section id="story">
+  <div class="story-grid">
+    <div class="story-text">
+      <div class="story-label">The Origin Story</div>
+      <h2 class="story-title">Born in the <em>Wular Valley</em>, Kashmir</h2>
+      <p class="story-body">
+        In the orchards surrounding <strong>Wular Lake</strong> — Asia's largest freshwater lake — Kagzi walnut trees have grown for over a century. Hand-tended by farmers who have never used chemical fertilisers. Harvested in September when the valley turns gold.
+      </p>
+      <p class="story-body">
+        Most Kashmir walnuts leave the valley as raw commodity. <strong>proTeen was built to change that.</strong> We go directly to the farmers. We know their names. We have stood in their orchards.
+      </p>
+      <p class="story-body">
+        Every proTeen bar contains <strong>60g of Kagzi kernel</strong> — the finest thin-shelled variety — delivering 5.4g of plant Omega-3 ALA. More than any other nut. More than any other bar.
+      </p>
+      <div class="story-pills">
+        <span class="pill">GI Origin</span>
+        <span class="pill">Kagzi Variety</span>
+        <span class="pill">Direct Farm</span>
+        <span class="pill">No Middlemen</span>
+        <span class="pill">Organically Grown</span>
+        <span class="pill">QR Traced</span>
+      </div>
+    </div>
+
+    <div class="story-visual">
+      <div class="story-ring1"></div>
+      <div class="story-ring2"></div>
+      <div class="story-orb">
+        <div class="orb-inner">
+          <span class="orb-stat">95%</span>
+          of India's walnuts<br>grow in Kashmir.<br><em>None have a brand.<br>Until now.</em>
+        </div>
+      </div>
+      <div class="float-badge fb-top">
+        <span class="fb-val">100+</span>
+        <span class="fb-lbl">Year old trees</span>
+      </div>
+      <div class="float-badge fb-bot">
+        <span class="fb-val">₹329</span>
+        <span class="fb-lbl">Cost advantage / kg</span>
+      </div>
+      <div class="float-badge fb-mid">
+        <span class="fb-val">Kagzi</span>
+        <span class="fb-lbl">Supreme variety</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PRODUCTS
+══════════════════════════════ -->
+<section id="products">
+  <div class="section-header">
+    <span class="section-label">The Range</span>
+    <h2 class="section-title">Three bars. <em>One Kashmir story.</em></h2>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- SKU 1 — Walnut + Jaggery -->
+    <div class="product-card pc-1" onclick="openModal('sku1')">
+      <div class="card-glow"></div>
+      <div class="card-body">
+        <span class="card-tag">BESTSELLER</span>
+
+        <div class="card-product-visual">
+          <svg width="220" height="190" viewBox="0 0 220 190" fill="none">
+            <!-- Bar visual -->
+            <rect x="20" y="40" width="180" height="100" rx="12" fill="#1A3015"/>
+            <rect x="20" y="40" width="180" height="100" rx="12" fill="url(#barGrad1)"/>
+            <!-- Foil texture -->
+            <line x1="55" y1="40" x2="55" y2="140" stroke="rgba(200,144,10,0.15)" stroke-width="1"/>
+            <line x1="90" y1="40" x2="90" y2="140" stroke="rgba(200,144,10,0.15)" stroke-width="1"/>
+            <line x1="125" y1="40" x2="125" y2="140" stroke="rgba(200,144,10,0.15)" stroke-width="1"/>
+            <line x1="160" y1="40" x2="160" y2="140" stroke="rgba(200,144,10,0.15)" stroke-width="1"/>
+            <!-- Label area -->
+            <rect x="34" y="58" width="152" height="64" rx="6" fill="rgba(15,30,12,0.8)"/>
+            <!-- Brand on bar -->
+            <text x="110" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="20" font-weight="700" fill="#F5EFE0">proTeen</text>
+            <text x="110" y="97" text-anchor="middle" font-family="Jost, sans-serif" font-size="8" fill="rgba(200,144,10,0.8)" letter-spacing="2">WALNUT · JAGGERY</text>
+            <text x="110" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="7" fill="rgba(245,239,224,0.4)" letter-spacing="1">5.4g OMEGA-3</text>
+            <!-- Walnut halves decorative -->
+            <ellipse cx="50" cy="160" rx="22" ry="18" fill="#4A2808" opacity="0.7"/>
+            <path d="M39 158 Q50 152 61 158 Q50 164 39 158Z" fill="#7A4510" opacity="0.6"/>
+            <line x1="50" y1="148" x2="50" y2="172" stroke="#3A1E08" stroke-width="1.5"/>
+            <ellipse cx="170" cy="168" rx="18" ry="16" fill="#4A2808" opacity="0.6"/>
+            <path d="M160 166 Q170 161 180 166 Q170 171 160 166Z" fill="#7A4510" opacity="0.5"/>
+            <line x1="170" y1="158" x2="170" y2="178" stroke="#3A1E08" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="barGrad1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3A6030" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#1A3018" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="card-info">
+          <div class="card-name">SKU 01</div>
+          <div class="card-sub">Walnut + Jaggery · 4×20g bars · Forest Green</div>
+
+          <div class="card-macros">
+            <div class="macro">
+              <span class="macro-val">5.4g</span>
+              <span class="macro-lbl">Omega-3</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">9.1g</span>
+              <span class="macro-lbl">Protein</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">2</span>
+              <span class="macro-lbl">Ingredients</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-price">₹149 <span>/ 4-pack</span></div>
+            <button class="card-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKU 2 — Night Mode -->
+    <div class="product-card pc-2" onclick="openModal('sku2')">
+      <div class="card-glow"></div>
+      <div class="card-body">
+        <span class="card-tag">🌙 NIGHT MODE</span>
+
+        <div class="card-product-visual">
+          <svg width="220" height="190" viewBox="0 0 220 190" fill="none">
+            <rect x="20" y="40" width="180" height="100" rx="12" fill="#100A18"/>
+            <rect x="20" y="40" width="180" height="100" rx="12" fill="url(#barGrad2)"/>
+            <line x1="55" y1="40" x2="55" y2="140" stroke="rgba(144,96,210,0.15)" stroke-width="1"/>
+            <line x1="90" y1="40" x2="90" y2="140" stroke="rgba(144,96,210,0.15)" stroke-width="1"/>
+            <line x1="125" y1="40" x2="125" y2="140" stroke="rgba(144,96,210,0.15)" stroke-width="1"/>
+            <line x1="160" y1="40" x2="160" y2="140" stroke="rgba(144,96,210,0.15)" stroke-width="1"/>
+            <rect x="34" y="58" width="152" height="64" rx="6" fill="rgba(8,5,15,0.85)"/>
+            <text x="110" y="82" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="20" font-weight="700" fill="#F5EFE0">proTeen</text>
+            <text x="110" y="97" text-anchor="middle" font-family="Jost, sans-serif" font-size="8" fill="rgba(176,144,255,0.85)" letter-spacing="2">NIGHT MODE</text>
+            <text x="110" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="7" fill="rgba(245,239,224,0.4)" letter-spacing="1">2.9g OMEGA-3 · COCOA</text>
+            <!-- Moon and cocoa -->
+            <text x="46" y="168" text-anchor="middle" font-size="26">🌙</text>
+            <rect x="155" y="148" width="28" height="20" rx="3" fill="#1A0C04"/>
+            <rect x="155" y="148" width="28" height="20" rx="3" fill="rgba(50,20,5,0.8)"/>
+            <line x1="155" y1="158" x2="183" y2="158" stroke="rgba(100,50,10,0.4)" stroke-width="1"/>
+            <line x1="169" y1="148" x2="169" y2="168" stroke="rgba(100,50,10,0.4)" stroke-width="1"/>
+            <defs>
+              <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3A2060" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#100A18" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="card-info">
+          <div class="card-name">SKU 02</div>
+          <div class="card-sub">Dark Cocoa + Walnut · 4×20g bars · Near Black</div>
+
+          <div class="card-macros">
+            <div class="macro">
+              <span class="macro-val">2.9g</span>
+              <span class="macro-lbl">Omega-3</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">8g</span>
+              <span class="macro-lbl">Dark Cocoa</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">0</span>
+              <span class="macro-lbl">Caffeine</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-price">₹159 <span>/ 4-pack</span></div>
+            <button class="card-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKU 3 — WULAR Premium Kernel -->
+    <div class="product-card pc-3" onclick="openModal('sku3')">
+      <div class="card-glow"></div>
+      <div class="card-body">
+        <span class="card-tag">WULAR PREMIUM</span>
+
+        <div class="card-product-visual">
+          <svg width="220" height="190" viewBox="0 0 220 190" fill="none">
+            <!-- Vacuum pouch shape -->
+            <rect x="40" y="25" width="140" height="140" rx="16" fill="#1A0D04"/>
+            <rect x="40" y="25" width="140" height="140" rx="16" fill="url(#barGrad3)"/>
+            <!-- Seal top -->
+            <rect x="40" y="25" width="140" height="14" rx="8" fill="rgba(200,144,10,0.6)"/>
+            <!-- Seal bottom -->
+            <rect x="40" y="151" width="140" height="14" rx="8" fill="rgba(200,144,10,0.4)"/>
+            <!-- WULAR label -->
+            <rect x="52" y="50" width="116" height="90" rx="6" fill="rgba(10,6,2,0.7)"/>
+            <!-- Mountain icon -->
+            <path d="M82 95 L95 75 L105 85 L118 65 L132 82 L145 95 Z" fill="rgba(200,144,10,0.6)"/>
+            <path d="M114 68 L118 65 L122 70" fill="#F5EFE0" opacity="0.7"/>
+            <!-- WULAR text -->
+            <text x="110" y="118" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="700" letter-spacing="4" fill="#F5EFE0">WULAR</text>
+            <text x="110" y="132" text-anchor="middle" font-family="Jost, sans-serif" font-size="7" fill="rgba(200,144,10,0.7)" letter-spacing="2">KASHMIR WALNUT</text>
+            <!-- Kernel pieces floating -->
+            <ellipse cx="68" cy="160" rx="14" ry="12" fill="#5A3010" opacity="0.7"/>
+            <path d="M61 158 Q68 153 75 158 Q68 163 61 158Z" fill="#7A4515" opacity="0.6"/>
+            <ellipse cx="155" cy="163" rx="12" ry="10" fill="#5A3010" opacity="0.65"/>
+            <path d="M149 161 Q155 157 161 161 Q155 165 149 161Z" fill="#7A4515" opacity="0.5"/>
+            <defs>
+              <linearGradient id="barGrad3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4A2808" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#1A0D04" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="card-info">
+          <div class="card-name">WULAR</div>
+          <div class="card-sub">Kagzi Supreme Kernel · 500g Vacuum Pack</div>
+
+          <div class="card-macros">
+            <div class="macro">
+              <span class="macro-val">9.1g</span>
+              <span class="macro-lbl">Omega-3/100g</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">N<sub style="font-size:12px">2</sub></span>
+              <span class="macro-lbl">Flushed</span>
+            </div>
+            <div class="macro">
+              <span class="macro-val">GI</span>
+              <span class="macro-lbl">Certified</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-price">₹499 <span>/ 500g</span></div>
+            <button class="card-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     WHY PROTEEN
+══════════════════════════════ -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-label">Why proTeen</span>
+    <h2 class="section-title">No lab. No isolates. <em>Just Kashmir.</em></h2>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">Ω</div>
+      <div class="why-title">Plant Omega-3 Leader</div>
+      <div class="why-body">5.4g ALA per bar. The only nut classified as an excellent source of plant Omega-3. 3.4× the WHO daily recommendation. No fish. No algae. Just walnut.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">2</div>
+      <div class="why-title">Two Ingredients Only</div>
+      <div class="why-body">Kashmir Walnut. Jaggery. That is the entire label. While IQBAR has 12+ ingredients and Yoga Bar has 15+, proTeen has 2. Clean label is not a trend for us — it is the product.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏔</div>
+      <div class="why-title">Kashmir GI Origin</div>
+      <div class="why-body">Every walnut kernel is traced to a specific orchard in the Wular valley. Kagzi variety. Paper-thin shell. 100-year-old trees. Highest oil content. QR code takes you there.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">∅</div>
+      <div class="why-title">No Compromises</div>
+      <div class="why-body">No added sugar. No preservatives. No pea protein isolate. No natural flavours. No binders. No FOMO health claims without science. Just the world's finest walnut, honestly presented.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">pro<em>Teen</em></div>
+  <p class="footer-copy">© 2025 proTeen · Kashmir Walnut · Brain & Heart · Confidential</p>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">FSSAI</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+<!-- ══════════════════════════════
+     MODALS
+══════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <!-- Content injected by JS -->
+  </div>
+</div>
+
+<script>
+// ── Custom cursor ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('button,a,.product-card,.why-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');ring.classList.add('hover');});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');ring.classList.remove('hover');});
+});
+
+// ── Navbar scroll ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>60);
+});
+
+// ── Modal data ──
+const products = {
+  sku1: {
+    tag:'BESTSELLER',tagColor:'#6AE070',tagBg:'rgba(45,120,45,0.15)',
+    name:'SKU 01',
+    sub:'Walnut + Jaggery',
+    desc:'India\'s first Kashmir Walnut-first brain and heart bar. 60g of Kagzi walnut kernel from the Wular valley, bound with organic jaggery. Two ingredients. Nothing else. The cleanest label in the Indian functional food market.',
+    benefits:[
+      {icon:'🧠',title:'Brain Health',desc:'5.4g plant Omega-3 ALA per bar. A 2025 University of Reading trial showed walnut breakfast improved executive function for 6 hours.'},
+      {icon:'❤️',title:'Heart Health',desc:'FDA-approved qualified health claim: walnuts support heart health. Walnut ALA converts to EPA and DHA in the body.'},
+      {icon:'💪',title:'Plant Protein',desc:'9.1g complete plant protein per bar. From whole walnut — not isolate. No processing, no extraction. Real food protein.'},
+      {icon:'🌿',title:'Zero Added Sugar',desc:'Sweetened only with organic jaggery — a low-GI traditional sweetener. No refined sugar, no stevia, no artificial sweeteners.'},
+      {icon:'🏔️',title:'GI Kashmir Origin',desc:'Kagzi variety from Wular valley orchards. Traced to source farm. QR code shows you exactly where your walnut grew.'},
+      {icon:'⚡',title:'Sustained Energy',desc:'High healthy fat content (walnut PUFA) provides slow-release energy. No sugar spike. No crash. Perfect 10am or 3pm snack.'},
+    ],
+    ingredients:['Kashmir Kagzi Walnut (60g)','Organic Jaggery (10g)'],
+    macros:[{val:'5.4g',lbl:'Omega-3 ALA'},{val:'9.1g',lbl:'Protein'},{val:'7.2g',lbl:'Fibre'},{val:'₹149',lbl:'4-pack MRP'}],
+  },
+  sku2: {
+    tag:'🌙 NIGHT MODE',tagColor:'#B090FF',tagBg:'rgba(120,80,210,0.15)',
+    name:'SKU 02',
+    sub:'Night Mode — Dark Cocoa + Walnut',
+    desc:'Engineered for the late-night grind. Dark cocoa delivers theobromine — a natural stimulant with sustained focus and zero caffeine crash. Kashmir walnut provides the Omega-3 brain fuel. For UPSC aspirants, engineers, and anyone who works when the city sleeps.',
+    benefits:[
+      {icon:'🌙',title:'Theobromine Focus',desc:'8g dark cocoa provides theobromine — a gentler, longer-lasting mental stimulant than caffeine. Focus without the crash or anxiety.'},
+      {icon:'🧠',title:'Brain Omega-3',desc:'2.9g plant Omega-3 ALA per bar — exceeds all global daily recommendations. Brain-ready fuel for late-night study sessions.'},
+      {icon:'☕',title:'No Caffeine Crash',desc:'Unlike coffee or energy drinks, theobromine gives sustained energy for 4-6 hours without the spike-and-crash cycle.'},
+      {icon:'😴',title:'Sleep Safe',desc:'Low enough theobromine to not disrupt sleep when consumed 3+ hours before bed. Unlike caffeine which persists for 10+ hours.'},
+      {icon:'🏔️',title:'Kashmir Walnut',desc:'20g Kagzi kernel per bar. Same GI-origin Kashmir source. Same QR traceability. Same whole-food integrity.'},
+      {icon:'0',title:'Zero Added Sugar',desc:'Dark cocoa and Kashmir walnut with organic jaggery only. No refined sugar, no stevia, no preservatives.'},
+    ],
+    ingredients:['Kashmir Kagzi Walnut (20g)','Dark Cocoa Powder 22% fat (8g)','Organic Jaggery (4g)','Ground Chia Seeds (5g)'],
+    macros:[{val:'2.9g',lbl:'Omega-3 ALA'},{val:'8g',lbl:'Dark Cocoa'},{val:'0',lbl:'Caffeine'},{val:'₹159',lbl:'4-pack MRP'}],
+  },
+  sku3: {
+    tag:'WULAR PREMIUM',tagColor:'#E0B040',tagBg:'rgba(200,144,10,0.12)',
+    name:'WULAR',
+    sub:'Kagzi Supreme Kernel — 500g Vacuum Pack',
+    desc:'The purest expression of Kashmir\'s walnut heritage. WULAR is the premium whole kernel brand — graded, nitrogen-flushed, and traced to the Wular valley. Kagzi Supreme grade: paper-thin shell, light amber kernel, highest oil content. For those who want the raw Kashmir walnut experience.',
+    benefits:[
+      {icon:'🏔️',title:'Kagzi Supreme Grade',desc:'Paper-thin shell, whole kernel halves, light amber colour. The finest grade of Kashmir walnut — reserved for premium retail and export.'},
+      {icon:'🌬️',title:'Nitrogen Flushed',desc:'Vacuum-sealed in nitrogen atmosphere. Prevents oxidation and rancidity. Keeps kernels fresh, light-coloured, and nutritionally intact for 12 months.'},
+      {icon:'📱',title:'QR Farm Traced',desc:'Every pack carries a QR code linking to the specific orchard, farmer, and harvest season. The world\'s first QR-traced Kashmir walnut brand.'},
+      {icon:'✅',title:'GI Certified Origin',desc:'Geographical Indication pathway for Kashmir Kagzi walnut. Protecting the identity and premium status of authentic Kashmir walnuts globally.'},
+      {icon:'💊',title:'Nutrient Density',desc:'9.08g Omega-3 ALA per 100g. 15.2g protein per 100g. 6.7g fibre. Vitamin E. Magnesium. The most nutritionally dense nut on earth.'},
+      {icon:'🌏',title:'Export Ready',desc:'Targeting UAE, UK, and Germany premium retail. Positioned as the Kashmir equivalent of Darjeeling tea — a GI-protected provenance product.'},
+    ],
+    ingredients:['Kashmir Kagzi Walnut Kernel (500g)','Packed in Nitrogen Atmosphere'],
+    macros:[{val:'9.1g',lbl:'Omega-3/100g'},{val:'15g',lbl:'Protein/100g'},{val:'GI',lbl:'Certified'},{val:'₹499',lbl:'500g MRP'}],
+  },
+};
+
+function openModal(id) {
+  const p = products[id];
+  const mc = document.getElementById('modalContent');
+  mc.innerHTML = `
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <span class="modal-tag" style="background:${p.tagBg};color:${p.tagColor};border:1px solid ${p.tagColor}33">${p.tag}</span>
+    <div class="modal-name">${p.name}</div>
+    <div class="modal-subname">${p.sub}</div>
+    <p class="modal-desc">${p.desc}</p>
+
+    <div class="modal-section-title">Health Benefits</div>
+    <div class="modal-benefits">
+      ${p.benefits.map(b=>`
+        <div class="benefit-item">
+          <div class="benefit-icon">${b.icon}</div>
+          <div class="benefit-text">
+            <div class="benefit-title">${b.title}</div>
+            <div class="benefit-desc">${b.desc}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="modal-section-title">Ingredients</div>
+    <div class="modal-ingredients">
+      <div class="ingr-list">
+        ${p.ingredients.map(i=>`<span class="ingr-tag">${i}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section-title">Nutrition at a Glance</div>
+    <div class="modal-macros">
+      ${p.macros.map(m=>`
+        <div class="m-macro">
+          <span class="m-macro-val">${m.val}</span>
+          <span class="m-macro-lbl">${m.lbl}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('modalOverlay')) closeModalBtn();
+}
+function closeModalBtn(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModalBtn(); });
+</script>
+</body>
+</html>
