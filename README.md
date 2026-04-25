@@ -1,2 +1,2 @@
 # proTeen
-clean label, proteen and eomga3
+clean label, proteen and omega3
