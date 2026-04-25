@@ -1,1061 +1,199 @@
-#!/usr/bin/env python3
-import base64
+// App.jsx (FULL PROJECT SINGLE FILE)
 
-imgs = {}
-for name, path, ext in [
-    ('sku1',  '/mnt/user-data/uploads/ChatGPT_Image_Apr_24__2026__11_56_53_AM.png',  'png'),
-    ('sku2',  '/mnt/user-data/uploads/ChatGPT_Image_Apr_24__2026__11_57_50_AM.png',  'png'),
-    ('brewd', '/mnt/user-data/uploads/WhatsApp_Image_2026-04-22_at_23_33_25.jpeg', 'jpeg'),
-]:
-    with open(path, 'rb') as f:
-        imgs[name] = f'data:image/{ext};base64,' + base64.b64encode(f.read()).decode()
+import { motion } from "framer-motion";
 
-html = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>proTeen — Kashmir Walnut · Brain & Heart</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-/* ══ TOKENS ══ */
-:root {
-  --ink:      #1A1814;
-  --ink-70:   rgba(26,24,20,0.7);
-  --ink-40:   rgba(26,24,20,0.4);
-  --ink-12:   rgba(26,24,20,0.12);
-  --ink-06:   rgba(26,24,20,0.06);
-  --paper:    #F6F3ED;
-  --paper-2:  #EDEAE2;
-  --stone:    #DDD9CF;
-  --gold:     #8A6A20;
-  --gold-lt:  #B8902A;
-  --gold-bg:  rgba(138,106,32,0.08);
-  --sage:     #3E5038;
-  --sage-lt:  rgba(62,80,56,0.1);
-  --warm:     #C49060;
-  --r:        4px;
-  --ease:     cubic-bezier(0.22,1,0.36,1);
-  --serif:    'Playfair Display', Georgia, serif;
-  --sans:     'DM Sans', system-ui, sans-serif;
-}
+export default function App() {
+  return (
+    <div className="bg-[#F5F1EB] text-[#1A1A1A]">
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--sans);
-  background: var(--paper);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+      {/* HERO */}
+      <section className="min-h-screen flex items-center px-6 md:px-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center w-full">
 
-/* ══ NAV ══ */
-nav {
-  position: fixed; top:0; left:0; right:0; z-index:200;
-  height: 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 52px;
-  background: rgba(246,243,237,0.9);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--ink-12);
-  transition: box-shadow 0.3s;
-}
-nav.up { box-shadow: 0 1px 24px rgba(26,24,20,0.06); }
-.logo {
-  font-family: var(--serif); font-size: 22px; font-weight: 700;
-  color: var(--ink); text-decoration: none; letter-spacing: -0.3px;
-}
-.logo em { color: var(--gold); font-style: italic; }
-.nav-mid { display:flex; gap:32px; list-style:none; }
-.nav-mid a {
-  font-size: 12px; letter-spacing: 0.07em; color: var(--ink-70);
-  text-decoration: none; font-weight: 400; transition: color 0.2s;
-}
-.nav-mid a:hover { color: var(--gold); }
-.nav-shop {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--paper); background: var(--ink);
-  padding: 9px 22px; border-radius: var(--r); text-decoration: none;
-  transition: background 0.25s, transform 0.2s;
-}
-.nav-shop:hover { background: var(--gold); transform: translateY(-1px); }
+          <motion.div initial={{opacity:0,y:40}} animate={{opacity:1,y:0}}>
+            <h1 className="text-6xl font-serif mb-6">proTeen</h1>
 
-/* ══ HERO ══ */
-#hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  padding-top: 60px;
-}
-.hero-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 1300px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 80px 52px 60px;
-  gap: 72px;
-  align-items: center;
-}
-.hero-left { animation: slideUp 0.9s var(--ease) both; }
-.hero-right {
-  animation: slideUp 0.9s 0.15s var(--ease) both;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-@keyframes slideUp {
-  from { opacity:0; transform:translateY(32px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+            <p className="text-xl mb-4">
+              Fuel Your Brain. Nourish Your Heart.
+            </p>
 
-.hero-kicker {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 22px;
-}
-.hero-kicker::before {
-  content:''; width:28px; height:1px; background:var(--gold); display:block;
-}
-h1 {
-  font-family: var(--serif);
-  font-size: clamp(44px, 5.2vw, 72px);
-  font-weight: 500; line-height: 1.04; letter-spacing: -1.5px;
-  color: var(--ink); margin-bottom: 22px;
-}
-h1 em { font-style: italic; color: var(--gold); }
-.hero-desc {
-  font-size: 15.5px; line-height: 1.75; color: var(--ink-70);
-  font-weight: 300; max-width: 440px; margin-bottom: 36px;
-}
-.hero-chips { display:flex; gap:9px; flex-wrap:wrap; margin-bottom: 40px; }
-.chip {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
-  padding: 6px 15px; border-radius: 40px;
-  border: 1px solid var(--stone); color: var(--ink-70); background: var(--paper-2);
-  transition: all 0.2s;
-}
-.chip.g { border-color: rgba(62,80,56,0.35); color:var(--sage); background:var(--sage-lt); }
-.chip.a { border-color: rgba(138,106,32,0.35); color:var(--gold); background:var(--gold-bg); }
-.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
-.btn {
-  font-family: var(--sans); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 13px 30px; border-radius: var(--r);
-  cursor: pointer; border: none; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 7px;
-  transition: all 0.25s var(--ease);
-}
-.btn-solid { background:var(--ink); color:var(--paper); }
-.btn-solid:hover { background:var(--gold); transform:translateY(-2px); }
-.btn-line { background:transparent; color:var(--ink); border:1px solid var(--stone); }
-.btn-line:hover { border-color:var(--ink); }
+            <p className="text-sm text-gray-500 mb-6">
+              Protein • Omega-3 • Functional Nutrition
+            </p>
 
-/* Hero product stack */
-.hero-product-stack {
-  position: relative; width: 100%; max-width: 520px;
-}
-.hps-back {
-  position: absolute;
-  width: 80%; left: -4%; top: 8%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(26,24,20,0.15);
-  transform: rotate(-4deg) scale(0.96);
-  transition: transform 0.5s var(--ease);
-  z-index: 1;
-}
-.hps-front {
-  position: relative; z-index: 2;
-  width: 80%; margin-left: auto;
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 40px 100px rgba(26,24,20,0.22);
-  transform: rotate(3deg);
-  transition: transform 0.5s var(--ease);
-}
-.hero-product-stack:hover .hps-back  { transform: rotate(-6deg) scale(0.97) translateX(-8px); }
-.hero-product-stack:hover .hps-front { transform: rotate(5deg) translateX(6px); }
-.hps-back img, .hps-front img {
-  width:100%; display:block; border-radius:16px;
-}
-/* floating stat pills */
-.hero-pill-float {
-  position: absolute; z-index: 10;
-  background: rgba(246,243,237,0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--stone);
-  border-radius: 40px;
-  padding: 10px 18px;
-  display: flex; flex-direction:column; align-items:center;
-  box-shadow: 0 8px 24px rgba(26,24,20,0.1);
-  animation: floatBob 4s ease-in-out infinite;
-}
-.hero-pill-float:nth-child(3) { animation-delay: 1.2s; }
-.hpf-val {
-  font-family: var(--serif); font-size: 22px; font-weight: 700;
-  color: var(--ink); line-height: 1; letter-spacing: -0.5px;
-}
-.hpf-val em { color:var(--gold); font-style:normal; }
-.hpf-lbl {
-  font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-40); font-weight: 500; margin-top: 2px;
-}
-.hpf-1 { top: 12%; left: -2%; }
-.hpf-2 { bottom: 18%; right: -2%; }
-@keyframes floatBob {
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-}
+            <button className="bg-black text-white px-6 py-3 rounded-full">
+              Launching Soon
+            </button>
+          </motion.div>
 
-/* ══ STAT STRIP ══ */
-.stat-strip {
-  background: var(--ink);
-  display: flex; justify-content:center; align-items:stretch;
-  overflow: hidden;
-}
-.ss-item {
-  flex:1; max-width:220px;
-  padding: 28px 32px;
-  text-align:center;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  position:relative;
-  transition: background 0.3s;
-}
-.ss-item:last-child { border-right:none; }
-.ss-item:hover { background: rgba(255,255,255,0.04); }
-.ss-val {
-  font-family: var(--serif); font-size: 32px; font-weight: 500;
-  color: var(--paper); letter-spacing:-1px; line-height:1;
-  margin-bottom: 5px;
-}
-.ss-val em { color:var(--gold-lt); font-style:normal; }
-.ss-lbl {
-  font-size: 9px; letter-spacing:0.16em; text-transform:uppercase;
-  color: rgba(246,243,237,0.3); font-weight:500;
-}
+          <motion.img
+            src="/proteen-green.png"
+            className="w-full max-w-sm mx-auto"
+            initial={{opacity:0,scale:0.9}}
+            animate={{opacity:1,scale:1}}
+          />
 
-/* ══ SHARED SECTION ══ */
-section { padding: 108px 52px; }
-.inner { max-width: 1200px; margin: 0 auto; }
-.kicker {
-  font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
-  color:var(--gold); display:flex; align-items:center; gap:10px; margin-bottom:16px;
-}
-.kicker::before { content:''; width:22px; height:1px; background:var(--gold); }
-h2 {
-  font-family: var(--serif); font-size: clamp(32px, 3.8vw, 50px);
-  font-weight: 500; letter-spacing: -1px; line-height:1.1;
-  color: var(--ink); margin-bottom: 14px;
-}
-h2 em { font-style:italic; color:var(--gold); }
-
-/* ══ PRODUCTS ══ */
-#products { background: var(--paper-2); padding: 96px 52px 112px; }
-.prod-head {
-  display:flex; justify-content:space-between; align-items:flex-end;
-  margin-bottom: 60px;
-}
-.prod-head-note {
-  font-size:13px; line-height:1.6; color:var(--ink-40); font-weight:300;
-  max-width:260px; text-align:right;
-}
-.prod-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-/* Product card */
-.pcard {
-  background: var(--paper);
-  border: 1px solid var(--stone);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.3s;
-  position: relative;
-}
-.pcard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 64px rgba(26,24,20,0.12);
-  border-color: rgba(138,106,32,0.25);
-}
-.pcard:hover .pc-img { transform: scale(1.04); }
-
-/* Image zone */
-.pc-img-wrap {
-  position: relative; overflow: hidden;
-  background: var(--paper-2);
-  aspect-ratio: 3/4;
-}
-.pc-img {
-  width:100%; height:100%;
-  object-fit: cover;
-  object-position: center;
-  display:block;
-  transition: transform 0.6s var(--ease);
-}
-/* gradient at bottom of image */
-.pc-img-wrap::after {
-  content:'';
-  position:absolute; bottom:0; left:0; right:0; height:100px;
-  background: linear-gradient(to top, rgba(246,243,237,0.6) 0%, transparent 100%);
-  pointer-events:none;
-}
-
-/* pill badges */
-.pc-badges {
-  position:absolute; top:14px; right:14px; z-index:5;
-  display:flex; flex-direction:column; gap:7px;
-}
-.pcb {
-  background: rgba(246,243,237,0.94);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(26,24,20,0.1);
-  border-radius: 40px;
-  padding: 5px 13px;
-  text-align:center;
-  box-shadow: 0 2px 8px rgba(26,24,20,0.08);
-}
-.pcb-val {
-  font-family: var(--serif); font-size:14px; font-weight:700;
-  display:block; line-height:1; color:var(--ink);
-  letter-spacing: -0.3px;
-}
-.pcb-val.g { color: var(--sage); }
-.pcb-val.a { color: var(--gold); }
-.pcb-lbl {
-  font-size: 7.5px; letter-spacing:0.12em; text-transform:uppercase;
-  color: var(--ink-40); font-weight:500;
-}
-
-/* sku tag */
-.pc-tag {
-  position:absolute; top:14px; left:14px; z-index:5;
-  font-size:9px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
-  padding:4px 12px; border-radius:40px; border:1px solid;
-}
-.pc-tag.g { color:var(--sage); border-color:rgba(62,80,56,0.4); background:rgba(62,80,56,0.08); }
-.pc-tag.d { color:var(--ink-70); border-color:var(--ink-12); background:rgba(26,24,20,0.05); }
-.pc-tag.a { color:var(--gold); border-color:rgba(138,106,32,0.35); background:var(--gold-bg); }
-
-/* Card body */
-.pc-body { padding: 24px 24px 22px; }
-.pc-brand { font-size:10px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-40); margin-bottom:5px; }
-.pc-name {
-  font-family: var(--serif); font-size:22px; font-weight:500;
-  color:var(--ink); letter-spacing:-0.3px; margin-bottom:10px; line-height:1.15;
-}
-.pc-name em { font-style:italic; }
-.pc-desc {
-  font-size:12.5px; line-height:1.65; color:var(--ink-70);
-  font-weight:300; margin-bottom:20px;
-}
-.pc-foot {
-  display:flex; align-items:center; justify-content:space-between;
-  padding-top:18px; border-top:1px solid var(--stone);
-}
-.pc-price {
-  font-family:var(--serif); font-size:20px; font-weight:500; color:var(--ink);
-  letter-spacing:-0.3px;
-}
-.pc-price small { font-family:var(--sans); font-size:10.5px; color:var(--ink-40); font-weight:300; }
-.pc-btn {
-  font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:0.1em;
-  text-transform:uppercase; padding:9px 18px; border-radius:var(--r);
-  border:1px solid var(--stone); background:transparent; color:var(--ink);
-  cursor:pointer; transition:all 0.25s;
-}
-.pc-btn:hover { background:var(--ink); color:var(--paper); border-color:var(--ink); }
-
-/* ══ STORY SECTION ══ */
-#story { background:var(--paper); }
-.story-layout {
-  display:grid; grid-template-columns:1fr 1fr; gap:96px; align-items:center;
-}
-.story-body-text {
-  font-size:15px; line-height:1.82; color:var(--ink-70); font-weight:300; margin-bottom:22px;
-}
-.story-body-text strong { color:var(--ink); font-weight:500; }
-.story-pull {
-  margin:28px 0; padding:22px 24px;
-  border-left:2px solid var(--gold);
-  background:var(--gold-bg);
-}
-.story-pull p {
-  font-family:var(--serif); font-style:italic; font-size:17px; font-weight:400;
-  line-height:1.6; color:var(--ink);
-}
-.story-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
-.stag {
-  font-size:10px; font-weight:500; letter-spacing:0.08em;
-  padding:5px 13px; border-radius:40px;
-  border:1px solid var(--stone); color:var(--ink-70);
-}
-
-/* Story right — Kashmir illustration + stats */
-.story-right { position:relative; }
-.kashmir-card {
-  border-radius:12px; overflow:hidden; border:1px solid var(--stone);
-  background:var(--paper-2);
-}
-.kashmir-svg-wrap { padding:0; line-height:0; }
-.story-stats-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:1px;
-  background:var(--stone); border-top:1px solid var(--stone);
-}
-.ssg-cell {
-  background:var(--paper); padding:22px 20px; text-align:center;
-}
-.ssg-val {
-  font-family:var(--serif); font-size:26px; font-weight:500;
-  color:var(--ink); letter-spacing:-0.8px; display:block; margin-bottom:3px;
-}
-.ssg-val em { color:var(--gold); font-style:normal; }
-.ssg-lbl {
-  font-size:9px; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--ink-40); font-weight:500;
-}
-/* floating label above card */
-.story-float {
-  position:absolute; top:-16px; right:20px;
-  background:var(--ink); color:var(--paper);
-  font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
-  padding:7px 16px; border-radius:40px;
-  box-shadow:0 4px 16px rgba(26,24,20,0.2);
-}
-
-/* ══ WHY SECTION ══ */
-#why { background:var(--ink); padding:96px 52px; }
-#why .kicker { color:var(--warm); }
-#why .kicker::before { background:var(--warm); }
-#why h2 { color:var(--paper); }
-.why-row {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:1px; background:rgba(246,243,237,0.08);
-  border:1px solid rgba(246,243,237,0.08);
-  border-radius:8px; overflow:hidden;
-  margin-top:60px;
-}
-.why-cell {
-  background:var(--ink); padding:40px 30px;
-  transition:background 0.3s;
-  position:relative; overflow:hidden;
-}
-.why-cell::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:2px;
-  background:linear-gradient(to right, transparent, var(--warm), transparent);
-  opacity:0; transition:opacity 0.3s;
-}
-.why-cell:hover::before { opacity:1; }
-.why-cell:hover { background:rgba(246,243,237,0.03); }
-.why-n {
-  font-family:var(--serif); font-style:italic; font-size:12px;
-  color:var(--warm); margin-bottom:22px; display:block;
-}
-.why-t {
-  font-family:var(--serif); font-size:19px; font-weight:500;
-  color:var(--paper); margin-bottom:10px; letter-spacing:-0.2px;
-}
-.why-b {
-  font-size:12.5px; line-height:1.72; color:rgba(246,243,237,0.42); font-weight:300;
-}
-
-/* ══ MODAL ══ */
-.modal-ov {
-  position:fixed; inset:0; z-index:500;
-  background:rgba(26,24,20,0.65); backdrop-filter:blur(14px);
-  display:flex; align-items:center; justify-content:center;
-  padding:20px;
-  opacity:0; pointer-events:none; transition:opacity 0.35s;
-}
-.modal-ov.open { opacity:1; pointer-events:all; }
-.modal {
-  background:var(--paper); border-radius:14px;
-  width:100%; max-width:860px; max-height:92vh; overflow:hidden;
-  display:grid; grid-template-columns:1fr 1.1fr;
-  transform:translateY(28px) scale(0.97);
-  transition:transform 0.4s var(--ease);
-  position:relative;
-}
-.modal-ov.open .modal { transform:translateY(0) scale(1); }
-
-.m-img-col {
-  background:var(--paper-2);
-  display:flex; align-items:center; justify-content:center;
-  padding:40px 32px;
-  position:relative; overflow:hidden;
-}
-.m-img-col img {
-  width:100%; max-width:320px;
-  border-radius:12px;
-  box-shadow:0 32px 72px rgba(26,24,20,0.18);
-}
-.m-img-col::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(circle at 50% 40%, rgba(138,106,32,0.08) 0%, transparent 65%);
-}
-
-.m-body {
-  padding:44px 40px; overflow-y:auto; max-height:92vh;
-}
-.m-close {
-  position:absolute; top:16px; right:16px;
-  width:34px; height:34px; border-radius:50%;
-  border:1px solid var(--stone); background:var(--paper);
-  color:var(--ink-70); cursor:pointer; font-size:14px;
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.2s; z-index:10;
-}
-.m-close:hover { background:var(--ink); color:var(--paper); border-color:var(--ink); }
-.m-tag {
-  font-size:9px; font-weight:600; letter-spacing:0.18em;
-  text-transform:uppercase; color:var(--gold); display:block; margin-bottom:10px;
-}
-.m-name {
-  font-family:var(--serif); font-size:38px; font-weight:500;
-  color:var(--ink); letter-spacing:-1px; line-height:1; margin-bottom:4px;
-}
-.m-name em { font-style:italic; color:var(--gold); }
-.m-sub {
-  font-size:12.5px; color:var(--ink-40); font-weight:300;
-  margin-bottom:22px; letter-spacing:0.02em;
-}
-.m-desc {
-  font-size:14px; line-height:1.8; color:var(--ink-70);
-  font-weight:300; margin-bottom:28px;
-  padding-left:16px; border-left:2px solid var(--stone);
-}
-.m-sec {
-  font-size:9px; font-weight:600; letter-spacing:0.18em;
-  text-transform:uppercase; color:var(--ink-40); margin:22px 0 12px;
-}
-.m-macros {
-  display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
-  background:var(--stone); border-radius:7px; overflow:hidden; margin-bottom:8px;
-}
-.mm-cell { background:var(--paper-2); padding:16px 16px; }
-.mm-val {
-  font-family:var(--serif); font-size:24px; font-weight:500;
-  color:var(--ink); letter-spacing:-0.5px; display:block; margin-bottom:3px;
-}
-.mm-val em { color:var(--gold); font-style:normal; }
-.mm-lbl { font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-40); font-weight:500; }
-.m-benefits { display:flex; flex-direction:column; gap:10px; }
-.mb-item {
-  display:flex; gap:12px; align-items:flex-start;
-  padding:13px 14px; background:var(--paper-2);
-  border-radius:7px; border:1px solid var(--stone);
-}
-.mb-icon { font-size:17px; flex-shrink:0; margin-top:1px; }
-.mb-t { font-size:12.5px; font-weight:600; color:var(--ink); margin-bottom:2px; }
-.mb-d { font-size:11.5px; color:var(--ink-70); font-weight:300; line-height:1.5; }
-.m-ingr { display:flex; flex-wrap:wrap; gap:7px; }
-.mi-tag {
-  font-size:10.5px; padding:5px 13px; border-radius:40px;
-  border:1px solid var(--stone); color:var(--ink-70); background:var(--paper-2);
-}
-
-/* ══ FOOTER ══ */
-footer {
-  background:var(--paper); border-top:1px solid var(--stone);
-  padding:44px 52px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.f-logo { font-family:var(--serif); font-size:19px; font-weight:700; color:var(--ink); }
-.f-logo em { color:var(--gold); font-style:italic; }
-.f-copy { font-size:11px; color:var(--ink-40); letter-spacing:0.04em; }
-.f-links { display:flex; gap:26px; list-style:none; }
-.f-links a { font-size:11px; letter-spacing:0.07em; color:var(--ink-40); text-decoration:none; transition:color 0.2s; }
-.f-links a:hover { color:var(--gold); }
-
-/* ══ REVEAL ANIMATION ══ */
-.rv { opacity:0; transform:translateY(22px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-.rv.d1 { transition-delay:0.1s; }
-.rv.d2 { transition-delay:0.2s; }
-.rv.d3 { transition-delay:0.3s; }
-.rv.on { opacity:1; transform:translateY(0); }
-
-/* ══ RESPONSIVE ══ */
-@media(max-width:1024px){
-  .hero-main { grid-template-columns:1fr; gap:56px; padding:96px 32px 56px; text-align:center; }
-  .hero-kicker { justify-content:center; }
-  .hero-btns,.hero-chips { justify-content:center; }
-  .hero-right { order:-1; }
-  .hero-product-stack { max-width:400px; margin:0 auto; }
-  .story-layout { grid-template-columns:1fr; gap:56px; }
-  .prod-grid { grid-template-columns:repeat(2,1fr); }
-  .why-row { grid-template-columns:repeat(2,1fr); }
-  nav { padding:0 24px; }
-  .nav-mid { display:none; }
-  section { padding:80px 28px; }
-}
-@media(max-width:640px){
-  .prod-grid { grid-template-columns:1fr; }
-  .why-row { grid-template-columns:1fr; }
-  .stat-strip { flex-wrap:wrap; }
-  .ss-item { flex:1 1 50%; border-bottom:1px solid rgba(255,255,255,0.06); }
-  .modal { grid-template-columns:1fr; }
-  .m-img-col img { max-width:220px; }
-  footer { flex-direction:column; gap:18px; text-align:center; }
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="logo">pro<em>Teen</em></a>
-  <ul class="nav-mid">
-    <li><a href="#story">Kashmir</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#why">Why us</a></li>
-  </ul>
-  <a href="#products" class="nav-shop">Shop Now</a>
-</nav>
-
-<!-- ════════════════════
-     HERO
-════════════════════ -->
-<section id="hero" style="padding:0;">
-  <div class="hero-main">
-    <!-- LEFT COPY -->
-    <div class="hero-left">
-      <div class="hero-kicker">Wular Valley · Kashmir · India</div>
-      <h1>Brain &amp; Heart<br>starts in <em>Kashmir</em></h1>
-      <p class="hero-desc">Two ingredients. One valley. The world's highest plant Omega-3 in a bar — from 100-year-old Kagzi walnut trees, directly from our farmers. No isolates. No B.S.</p>
-      <div class="hero-chips">
-        <span class="chip a">5.4g Omega-3 ALA</span>
-        <span class="chip g">9.1g Protein</span>
-        <span class="chip">2 Ingredients</span>
-        <span class="chip">0g Added Sugar</span>
-        <span class="chip">GI Certified</span>
-      </div>
-      <div class="hero-btns">
-        <a href="#products" class="btn btn-solid">Explore Products →</a>
-        <a href="#story" class="btn btn-line">Our Story</a>
-      </div>
-    </div>
-
-    <!-- RIGHT — product stack -->
-    <div class="hero-right">
-      <div class="hero-pill-float hpf-1">
-        <span class="hpf-val">5.4<em>g</em></span>
-        <span class="hpf-lbl">Omega-3 / bar</span>
-      </div>
-      <div class="hero-product-stack">
-        <div class="hps-back">
-          <img src="IMG_SKU2" alt="proTeen Night Mode"/>
         </div>
-        <div class="hps-front">
-          <img src="IMG_SKU1" alt="proTeen Walnut + Jaggery"/>
+      </section>
+
+      {/* PRODUCTS */}
+      <section className="py-24 px-6 md:px-20">
+
+        <h2 className="text-3xl font-serif mb-12 text-center">
+          Products
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10">
+
+          <ProductCard 
+            img="/proteen-green.png"
+            name="proTeen"
+            desc="Supports brain function with Omega-3 and clean protein for heart health."
+          />
+
+          <ProductCard 
+            img="/proteen-brown.png"
+            name="proTeen Dark"
+            desc="Cocoa enriched variant delivering cognitive support and sustained energy."
+          />
+
+          <ProductCard 
+            img="/brewd.png"
+            name="Brew’d Stroopwafel"
+            desc="Premium indulgence with walnut-based nutrition and rich cocoa fills."
+            dark
+          />
+
         </div>
-      </div>
-      <div class="hero-pill-float hpf-2">
-        <span class="hpf-val">9.1<em>g</em></span>
-        <span class="hpf-lbl">Protein / bar</span>
-      </div>
-    </div>
-  </div>
+      </section>
 
-  <!-- STAT STRIP -->
-  <div class="stat-strip">
-    <div class="ss-item">
-      <div class="ss-val">5.4<em>g</em></div>
-      <div class="ss-lbl">Omega-3 ALA per bar</div>
-    </div>
-    <div class="ss-item">
-      <div class="ss-val">3.4<em>×</em></div>
-      <div class="ss-lbl">WHO daily recommendation</div>
-    </div>
-    <div class="ss-item">
-      <div class="ss-val">2</div>
-      <div class="ss-lbl">Whole ingredients only</div>
-    </div>
-    <div class="ss-item">
-      <div class="ss-val">0<em>g</em></div>
-      <div class="ss-lbl">Added sugar</div>
-    </div>
-    <div class="ss-item">
-      <div class="ss-val">GI</div>
-      <div class="ss-lbl">Kashmir certified origin</div>
-    </div>
-  </div>
-</section>
+      {/* STORY */}
+      <section className="py-24 px-6 md:px-20 grid md:grid-cols-2 gap-12 items-center">
 
-<!-- ════════════════════
-     PRODUCTS
-════════════════════ -->
-<section id="products">
-  <div class="inner">
-    <div class="prod-head rv">
-      <div>
-        <div class="kicker">The Range</div>
-        <h2>Three products.<br><em>One valley.</em></h2>
-      </div>
-      <p class="prod-head-note">Tap any product to see full nutrition details and health benefits.</p>
-    </div>
+        <img src="/proteen-brown.png" className="rounded-xl"/>
 
-    <div class="prod-grid">
+        <div>
+          <h2 className="text-3xl font-serif mb-6">
+            From Kashmir
+          </h2>
 
-      <!-- SKU1: Walnut + Jaggery -->
-      <div class="pcard rv d1" onclick="openModal('sku1')">
-        <div class="pc-img-wrap">
-          <img class="pc-img" src="IMG_SKU1" alt="proTeen Walnut + Jaggery"/>
-          <span class="pc-tag g">SKU 01 · Original</span>
-          <div class="pc-badges">
-            <div class="pcb">
-              <span class="pcb-val g">9.1g</span>
-              <span class="pcb-lbl">Protein</span>
-            </div>
-            <div class="pcb">
-              <span class="pcb-val a">5.4g</span>
-              <span class="pcb-lbl">Omega-3</span>
-            </div>
-          </div>
+          <p className="text-gray-600 mb-4 leading-relaxed">
+            Sourced from the valleys of Kashmir, walnuts have been traditionally
+            known to resemble the human brain — a symbol of their role in cognitive health.
+          </p>
+
+          <p className="text-gray-600 mb-4 leading-relaxed">
+            Rich in Alpha-Linolenic Acid (ALA), walnuts are linked to improved
+            brain function and cardiovascular support.
+          </p>
+
+          <p className="text-gray-500 text-sm">
+            Supported by global nutrition research including findings from 
+            Harvard School of Public Health and NIH studies on Omega-3 benefits.
+          </p>
         </div>
-        <div class="pc-body">
-          <div class="pc-brand">proTeen</div>
-          <div class="pc-name">Walnut <em>+ Jaggery</em></div>
-          <p class="pc-desc">60g Kagzi walnut kernel. 10g organic jaggery. Two ingredients, nothing else. 3.4× the WHO daily Omega-3 in a single 50g bar.</p>
-          <div class="pc-foot">
-            <div class="pc-price">₹149 <small>/ 4-pack</small></div>
-            <button class="pc-btn">View →</button>
-          </div>
-        </div>
-      </div>
 
-      <!-- SKU2: Night Mode -->
-      <div class="pcard rv d2" onclick="openModal('sku2')">
-        <div class="pc-img-wrap">
-          <img class="pc-img" src="IMG_SKU2" alt="proTeen Night Mode Dark Cocoa"/>
-          <span class="pc-tag d">🌙 Night Mode</span>
-          <div class="pc-badges">
-            <div class="pcb">
-              <span class="pcb-val g">8g</span>
-              <span class="pcb-lbl">Protein</span>
-            </div>
-            <div class="pcb">
-              <span class="pcb-val a">2.9g</span>
-              <span class="pcb-lbl">Omega-3</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-brand">proTeen</div>
-          <div class="pc-name">Night Mode <em>Dark Cocoa</em></div>
-          <p class="pc-desc">Theobromine from dark cocoa delivers sustained focus without the caffeine crash. For UPSC aspirants and late-night thinkers.</p>
-          <div class="pc-foot">
-            <div class="pc-price">₹159 <small>/ 4-pack</small></div>
-            <button class="pc-btn">View →</button>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <!-- Brew'd -->
-      <div class="pcard rv d3" onclick="openModal('brewd')">
-        <div class="pc-img-wrap">
-          <img class="pc-img" src="IMG_BREWD" alt="Brew'd Stroopwafel — Walnut Fills"/>
-          <span class="pc-tag a">Brew'd</span>
-          <div class="pc-badges">
-            <div class="pcb">
-              <span class="pcb-val g">4.5g</span>
-              <span class="pcb-lbl">Protein</span>
-            </div>
-            <div class="pcb">
-              <span class="pcb-val a">2.7g</span>
-              <span class="pcb-lbl">Omega-3</span>
-            </div>
-          </div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-brand">Brew'd Stroopwafel</div>
-          <div class="pc-name">Walnut <em>Fills</em></div>
-          <p class="pc-desc">Place on hot coffee. Kashmir walnut and dark cocoa filling melts. Then bite. A ritual, not just a snack. 4 pieces, 180g.</p>
-          <div class="pc-foot">
-            <div class="pc-price">₹299 <small>/ 4 pieces</small></div>
-            <button class="pc-btn">View →</button>
-          </div>
-        </div>
-      </div>
+      {/* QR STORY */}
+      <section className="py-24 text-center px-6">
 
-    </div>
-  </div>
-</section>
+        <h2 className="text-3xl font-serif mb-6">
+          Scan. Discover Kashmir.
+        </h2>
 
-<!-- ════════════════════
-     STORY
-════════════════════ -->
-<section id="story">
-  <div class="inner">
-    <div class="story-layout">
-      <div class="rv">
-        <div class="kicker">The Origin</div>
-        <h2>Born in the<br><em>Wular Valley</em></h2>
-        <p class="story-body-text">
-          Surrounding <strong>Wular Lake</strong> — Asia's largest freshwater lake — Kagzi walnut trees have grown for over a century. No chemical fertilisers. No factory farming. Just glacial soil, high altitude, and patient farmers.
+        <p className="text-gray-600 mb-8">
+          Trace the journey from Kashmiri farms to your nutrition bar.
         </p>
-        <div class="story-pull">
-          <p>"95% of India's walnuts grow in Kashmir. None had a brand. Until now."</p>
+
+        <div className="bg-white p-6 inline-block rounded-xl shadow-sm">
+          <img src="/qr.png" className="w-32 mx-auto mb-4"/>
+          <p className="text-sm text-gray-500">
+            Watch the story of walnuts, culture & origin
+          </p>
         </div>
-        <p class="story-body-text">
-          We go directly to our anchor farmers. We know their names. We have stood in their orchards in September when the valley turns gold. Every proTeen bar carries a <strong>QR code</strong> that takes you to the specific orchard it came from.
+
+      </section>
+
+      {/* WHY WALNUT */}
+      <section className="py-24 px-6 md:px-20 bg-white">
+
+        <h2 className="text-3xl font-serif text-center mb-12">
+          Why Walnut?
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10 text-center">
+
+          <div>
+            <h3 className="font-medium mb-2">Brain Health</h3>
+            <p className="text-gray-500 text-sm">
+              Omega-3 fatty acids support cognitive performance and memory.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-medium mb-2">Heart Health</h3>
+            <p className="text-gray-500 text-sm">
+              Helps reduce bad cholesterol and improve cardiovascular health.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-medium mb-2">Clean Energy</h3>
+            <p className="text-gray-500 text-sm">
+              Whole-food protein with no isolates ensures sustained energy.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* BREWD */}
+      <section className="py-24 bg-black text-white text-center">
+
+        <h2 className="text-4xl font-serif mb-4">Brew’d</h2>
+
+        <p className="text-gray-400 mb-8">
+          Indulgence meets functional nutrition.
         </p>
-        <div class="story-tags">
-          <span class="stag">Kagzi Variety</span>
-          <span class="stag">Direct Farm</span>
-          <span class="stag">No Middlemen</span>
-          <span class="stag">QR Traced</span>
-          <span class="stag">Organically Grown</span>
-          <span class="stag">GI Origin</span>
-        </div>
-      </div>
 
-      <div class="story-right rv d2">
-        <div class="story-float">Wular Valley · Kashmir</div>
-        <div class="kashmir-card">
-          <!-- Kashmir mountain SVG -->
-          <div class="kashmir-svg-wrap">
-            <svg width="100%" viewBox="0 0 580 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#D8D3C8"/>
-                  <stop offset="100%" stop-color="#C8C2B4"/>
-                </linearGradient>
-                <linearGradient id="m1g" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#B8B0A0" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#9A9280"/>
-                </linearGradient>
-                <linearGradient id="m2g" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#7A8870"/>
-                  <stop offset="100%" stop-color="#5A6850"/>
-                </linearGradient>
-                <linearGradient id="m3g" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3E5038"/>
-                  <stop offset="100%" stop-color="#2E3C28"/>
-                </linearGradient>
-              </defs>
-              <!-- Sky -->
-              <rect width="580" height="280" fill="url(#sg)"/>
-              <!-- Far peaks -->
-              <path d="M-5 195 L25 150 L55 165 L90 122 L130 88 L165 112 L200 78 L238 100 L275 62 L312 86 L350 55 L388 80 L425 50 L462 74 L500 44 L538 68 L585 50 L585 210 L-5 210Z" fill="url(#m1g)"/>
-              <!-- Snow patches -->
-              <path d="M130 90 L143 82 L152 92 L145 100 L132 97Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M275 64 L288 56 L296 66 L289 74 L277 71Z" fill="rgba(255,255,255,0.92)"/>
-              <path d="M350 57 L363 49 L370 59 L363 67 L352 64Z" fill="rgba(255,255,255,0.9)"/>
-              <path d="M425 52 L437 44 L444 54 L437 62 L426 59Z" fill="rgba(255,255,255,0.88)"/>
-              <path d="M500 46 L512 38 L519 48 L512 56 L501 53Z" fill="rgba(255,255,255,0.86)"/>
-              <!-- Mid hills -->
-              <path d="M-5 235 L30 200 L75 215 L125 185 L175 200 L225 170 L275 188 L325 162 L375 178 L425 155 L475 172 L530 150 L585 165 L585 265 L-5 265Z" fill="url(#m2g)"/>
-              <!-- Foreground ridge -->
-              <path d="M-5 265 L45 240 L110 255 L190 232 L270 248 L355 228 L435 244 L515 226 L585 240 L585 280 L-5 280Z" fill="url(#m3g)"/>
-              <!-- Wular Lake -->
-              <ellipse cx="290" cy="273" rx="155" ry="10" fill="#B0C0B8" opacity="0.65"/>
-              <ellipse cx="290" cy="271" rx="125" ry="6.5" fill="#C0D0C8" opacity="0.5"/>
-              <line x1="200" y1="270" x2="255" y2="270" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
-              <line x1="325" y1="273" x2="370" y2="273" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
-              <!-- Kashmir mountain icon label -->
-              <path d="M275 240 L290 220 L305 240Z" fill="rgba(138,106,32,0.4)"/>
-              <path d="M282 234 L290 222 L295 230" fill="rgba(255,255,255,0.5)"/>
-            </svg>
-          </div>
-          <!-- Stats below map -->
-          <div class="story-stats-grid">
-            <div class="ssg-cell">
-              <span class="ssg-val">100<em>+</em></span>
-              <span class="ssg-lbl">Year-old orchards</span>
-            </div>
-            <div class="ssg-cell">
-              <span class="ssg-val">₹329</span>
-              <span class="ssg-lbl">Cost advantage / kg</span>
-            </div>
-            <div class="ssg-cell">
-              <span class="ssg-val">0</span>
-              <span class="ssg-lbl">Middlemen</span>
-            </div>
-            <div class="ssg-cell">
-              <span class="ssg-val">GI</span>
-              <span class="ssg-lbl">Certified origin</span>
-            </div>
-          </div>
-        </div>
-      </div>
+        <img src="/brewd.png" className="mx-auto w-60"/>
+
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-center text-sm text-gray-500">
+        proTeen © 2026 <br />
+        Made with Kashmiri walnuts
+      </footer>
+
     </div>
-  </div>
-</section>
-
-<!-- ════════════════════
-     WHY
-════════════════════ -->
-<section id="why" style="padding:96px 52px;">
-  <div class="inner">
-    <div class="rv">
-      <div class="kicker">Why proTeen</div>
-      <h2 style="color:var(--paper)">No isolates.<br><em>No B.S.</em></h2>
-    </div>
-    <div class="why-row rv d1">
-      <div class="why-cell">
-        <span class="why-n">01 —</span>
-        <div class="why-t">Plant Omega-3 Leader</div>
-        <div class="why-b">5.4g ALA per bar. The only nut classified as an excellent source of plant Omega-3. 3.4× the WHO daily recommendation. Verified by NABL lab report. No other bar in India comes close.</div>
-      </div>
-      <div class="why-cell">
-        <span class="why-n">02 —</span>
-        <div class="why-t">Two Ingredients Only</div>
-        <div class="why-b">Kashmir Walnut. Jaggery. That's the complete label. While IQBAR has 12+ ingredients and Yoga Bar has 15+, proTeen has 2. Whole food. No isolates. No extraction. Real food.</div>
-      </div>
-      <div class="why-cell">
-        <span class="why-n">03 —</span>
-        <div class="why-t">Kashmir GI Origin</div>
-        <div class="why-b">Every kernel is traced to a specific Kagzi orchard in the Wular valley. Paper-thin shell. 100-year-old trees. QR code takes you there. No other bar in India can say this.</div>
-      </div>
-      <div class="why-cell">
-        <span class="why-n">04 —</span>
-        <div class="why-t">Direct Farm Model</div>
-        <div class="why-b">Zero middlemen. ₹329/kg cost advantage vs market. Our farmers earn fairly. You get fresher, more nutritious walnut. The Kashmir supply chain is finally honest.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="f-logo">pro<em>Teen</em></div>
-  <p class="f-copy">© 2025 proTeen · Kashmir Walnut · Brain & Heart</p>
-  <ul class="f-links">
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#">FSSAI</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</footer>
-
-<!-- ════════════════════
-     MODAL
-════════════════════ -->
-<div class="modal-ov" id="mOv" onclick="handleOvClick(event)">
-  <div class="modal" id="mBox">
-    <button class="m-close" onclick="closeModal()">✕</button>
-    <div class="m-img-col" id="mImgCol"></div>
-    <div class="m-body" id="mBody"></div>
-  </div>
-</div>
-
-<script>
-// Scroll nav
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('up', window.scrollY > 40);
-});
-
-// Reveal
-const rvEls = document.querySelectorAll('.rv');
-const rvObs = new IntersectionObserver(es => {
-  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
-}, { threshold: 0.1 });
-rvEls.forEach(el => rvObs.observe(el));
-
-// Modal data
-const DATA = {
-  sku1: {
-    img: 'IMG_SKU1',
-    tag: 'proTeen · SKU 01 — Original',
-    name: 'Walnut', em: '+ Jaggery',
-    sub: '60g Kagzi Kernel · 10g Organic Jaggery · 50g bar · Kashmir Green Pack',
-    desc: "India's first Kashmir Walnut-first brain and heart bar. Two whole-food ingredients pressed cold into a 50g bar. The cleanest label in Indian functional food. Every kernel is traced to a Kagzi orchard in the Wular valley, Kashmir.",
-    macros: [
-      {v:'5.4g', l:'Omega-3 ALA / bar'},
-      {v:'9.1g', l:'Protein / bar'},
-      {v:'0g',   l:'Added sugar'},
-      {v:'₹149', l:'4-pack MRP'},
-    ],
-    benefits: [
-      {i:'🧠', t:'Brain Performance', d:'2025 University of Reading trial: walnut breakfast improved executive function for 6 hours. Omega-3 ALA supports neural membrane integrity.'},
-      {i:'❤️', t:'Heart Health', d:'FDA-approved qualified health claim. ALA converts to EPA and DHA — both essential for cardiovascular health and reducing inflammation.'},
-      {i:'💪', t:'Whole Food Protein', d:'9.1g protein from whole Kashmir walnut — not pea isolate, not whey. Real food matrix with co-nutrients that enhance absorption.'},
-      {i:'⚡', t:'Sustained Energy', d:'High healthy fat (PUFA) provides slow-release energy. No sugar spike. No crash. Perfect 10am or 3pm functional snack.'},
-    ],
-    ingr: ['Kashmir Kagzi Walnut (60g)', 'Organic Jaggery (10g)'],
-  },
-  sku2: {
-    img: 'IMG_SKU2',
-    tag: 'proTeen · SKU 02 — Night Mode',
-    name: 'Night Mode', em: 'Dark Cocoa',
-    sub: '20g Walnut · 8g Dark Cocoa · 5g Chia · 4g Jaggery · 50g bar · Cocoa Brown Pack',
-    desc: "Engineered for the late-night grind. Dark cocoa delivers theobromine — a natural, gentler stimulant than caffeine. Sustained focus without the crash or anxiety. Kashmir walnut provides the Omega-3 brain fuel. For UPSC aspirants, JEE students, and anyone who works when the city sleeps.",
-    macros: [
-      {v:'2.9g', l:'Omega-3 ALA / bar'},
-      {v:'8g',   l:'Protein / bar'},
-      {v:'0',    l:'Caffeine crash'},
-      {v:'₹159', l:'4-pack MRP'},
-    ],
-    benefits: [
-      {i:'🌙', t:'Theobromine Focus', d:'8g dark cocoa = sustained mental energy for 4–6 hours. Gentler and longer-lasting than caffeine. No anxiety, no jitters, no crash.'},
-      {i:'🧠', t:'Brain Omega-3', d:'2.9g plant Omega-3 ALA per bar — exceeds WHO, IOM, and EFSA daily recommendations in one bar. With added chia for extra ALA.'},
-      {i:'😴', t:'Sleep Safe', d:'Low theobromine levels do not disrupt sleep when consumed 3+ hours before bed. Unlike caffeine, which persists in the body for 10+ hours.'},
-      {i:'🌿', t:'Zero Added Sugar', d:'Dark cocoa, Kashmir walnut, chia and organic jaggery only. No refined sugar. No stevia. No artificial sweeteners.'},
-    ],
-    ingr: ['Kashmir Kagzi Walnut (20g)', 'Dark Cocoa 22% fat (8g)', 'Ground Chia Seeds (5g)', 'Organic Jaggery (4g)'],
-  },
-  brewd: {
-    img: 'IMG_BREWD',
-    tag: "Brew'd · Stroopwafel",
-    name: 'Walnut', em: 'Fills',
-    sub: 'Kashmir Walnut · Dark Cocoa · Jaggery · Raw Honey · Cinnamon · 4 pieces · 180g',
-    desc: "Place on your hot coffee cup. Let the Kashmir walnut and dark cocoa filling melt and soften. Then bite through the crispy waffle into warm, rich filling. A ritual, not just a snack. Inspired by the Dutch stroopwafel — built on a Kashmir walnut soul.",
-    macros: [
-      {v:'2.7g', l:'Omega-3 / piece'},
-      {v:'4.5g', l:'Protein / piece'},
-      {v:'0g',   l:'Added sugar'},
-      {v:'₹299', l:'4-piece MRP'},
-    ],
-    benefits: [
-      {i:'☕', t:'The Coffee Ritual', d:'Designed to rest on your cup rim. The Brew\'d walnut cocoa filling melts with the steam. One bite — walnut, cocoa, honey, cinnamon together.'},
-      {i:'🧠', t:'Morning Brain Fuel', d:'2.7g Omega-3 ALA per piece from Kashmir walnut paste. Start your morning brain function before the caffeine even kicks in.'},
-      {i:'🌿', t:'Clean Ingredients', d:'Kashmir walnut, dark cocoa, jaggery, raw honey, cinnamon, cardamom. Nothing artificial. No preservatives. No refined sugar.'},
-      {i:'✨', t:'Theobromine Warmth', d:'Dark cocoa delivers gentle theobromine — the feel-good compound that pairs perfectly with morning coffee without caffeine anxiety.'},
-    ],
-    ingr: ['Kashmir Walnut Powder (14g)', 'Medjool Date Powder (6g)', 'Dark Cocoa (3.5g)', 'Ground Chia (3g)', 'Raw Honey (1.5g)', 'Ceylon Cinnamon (0.4g)', 'Cardamom (0.2g)'],
-  },
-};
-
-function openModal(id) {
-  const d = DATA[id];
-  document.getElementById('mImgCol').innerHTML = `<img src="${d.img}" alt="${d.name}"/>`;
-  document.getElementById('mBody').innerHTML = `
-    <span class="m-tag">${d.tag}</span>
-    <div class="m-name">${d.name} <em>${d.em}</em></div>
-    <div class="m-sub">${d.sub}</div>
-    <p class="m-desc">${d.desc}</p>
-    <div class="m-sec">Nutrition at a Glance</div>
-    <div class="m-macros">
-      ${d.macros.map(m=>`<div class="mm-cell"><span class="mm-val">${m.v}</span><span class="mm-lbl">${m.l}</span></div>`).join('')}
-    </div>
-    <div class="m-sec">Health Benefits</div>
-    <div class="m-benefits">
-      ${d.benefits.map(b=>`<div class="mb-item"><div class="mb-icon">${b.i}</div><div><div class="mb-t">${b.t}</div><div class="mb-d">${b.d}</div></div></div>`).join('')}
-    </div>
-    <div class="m-sec">Ingredients</div>
-    <div class="m-ingr">${d.ingr.map(i=>`<span class="mi-tag">${i}</span>`).join('')}</div>
-  `;
-  document.getElementById('mOv').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  );
 }
-function closeModal() {
-  document.getElementById('mOv').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleOvClick(e) {
-  if(e.target === document.getElementById('mOv')) closeModal();
-}
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-</script>
-</body>
-</html>'''
 
-# Replace image placeholders with real base64 data
-html = html.replace('IMG_SKU1',  imgs['sku1'])
-html = html.replace('IMG_SKU2',  imgs['sku2'])
-html = html.replace('IMG_BREWD', imgs['brewd'])
 
-with open('/mnt/user-data/outputs/proteen-final.html', 'w') as f:
-    f.write(html)
-print(f"Done: {len(html):,} chars")
+/* PRODUCT CARD */
+
+function ProductCard({ img, name, desc, dark }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.04 }}
+      className={`p-6 rounded-2xl text-center ${
+        dark ? "bg-black text-white" : "bg-white"
+      }`}
+    >
+      <img src={img} className="mx-auto mb-6 w-40"/>
+
+      <h3 className="text-lg mb-2">{name}</h3>
+
+      <p className="text-sm text-gray-500 mb-4">
+        {desc}
+      </p>
+
+      <span className="text-xs bg-gray-200 px-3 py-1 rounded-full">
+        Out of Stock
+      </span>
+    </motion.div>
+  );
+}
