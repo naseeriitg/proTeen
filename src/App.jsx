@@ -381,7 +381,7 @@ function Products() {
       delay:     0.15,
     },
     {
-      img:       '/brewd.png',
+      img:       '/brewd.jpeg',
       tag:       'Brew\'d',
       tagColor:  'border-warm/40 text-warm bg-warm/8',
       name:      'Brew\'d',
