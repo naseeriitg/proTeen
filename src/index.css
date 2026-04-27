@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-gold/20 text-ink;
+  }
+}
+
+@layer components {
+  /* Section label above headings */
+  .sec-label {
+    @apply flex items-center gap-3 text-[10px] font-semibold tracking-widest2 uppercase text-gold;
+  }
+  .sec-label::before {
+    content: '';
+    @apply block w-6 h-px bg-gold flex-shrink-0;
+  }
+
+  /* Divider line */
+  .divider {
+    @apply w-full h-px bg-stone;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  .font-body    { font-family: 'Inter', system-ui, sans-serif; }
+
+  /* Smooth image rendering */
+  .img-smooth { image-rendering: -webkit-optimize-contrast; }
+}
