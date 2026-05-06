@@ -505,54 +505,13 @@ function Story() {
           >
             {/* Mountain illustration card */}
             <div className="rounded-sm overflow-hidden border border-stone shadow-[0_20px_60px_rgba(26,24,20,0.07)]">
-              {/* SVG Kashmir scene */}
+              {/* Walnut Farm Image */}
               <div className="bg-[#EAE6DC] overflow-hidden">
-                <svg
-                  viewBox="0 0 640 280"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  {/* Sky */}
-                  <rect width="640" height="280" fill="#E5E1D8" />
-                  {/* Far peaks */}
-                  <path
-                    d="M-10 210 L45 162 L98 178 L152 132 L202 106 L252 126 L302 86 L352 110 L402 76 L452 98 L502 63 L552 86 L602 56 L650 78 L650 230 L-10 230Z"
-                    fill="#B8B3AA"
-                    opacity="0.7"
-                  />
-                  {/* Snow caps */}
-                  <path d="M300 90 L313 76 L323 90 L315 99 L302 97Z" fill="white" opacity="0.88" />
-                  <path d="M400 80 L413 66 L422 80 L414 88 L401 86Z" fill="white" opacity="0.9" />
-                  <path d="M500 67 L512 53 L521 67 L513 75 L501 73Z" fill="white" opacity="0.86" />
-                  <path d="M198 110 L210 96 L220 110 L212 118 L200 116Z" fill="white" opacity="0.8" />
-                  {/* Mid hills */}
-                  <path
-                    d="M-10 250 L55 222 L120 238 L185 210 L250 225 L315 198 L380 214 L445 192 L510 206 L575 188 L650 200 L650 280 L-10 280Z"
-                    fill="#7A8870"
-                    opacity="0.75"
-                  />
-                  {/* Foreground ridge */}
-                  <path
-                    d="M-10 268 L70 248 L155 260 L240 242 L325 256 L410 238 L495 250 L580 235 L650 246 L650 280 L-10 280Z"
-                    fill="#4A5C42"
-                    opacity="0.9"
-                  />
-                  {/* Wular Lake */}
-                  <ellipse cx="320" cy="275" rx="188" ry="10" fill="#AABCB2" opacity="0.55" />
-                  <ellipse cx="320" cy="273" rx="150" ry="6" fill="#BECEC4" opacity="0.4" />
-                  <line x1="218" y1="272" x2="270" y2="272" stroke="white" strokeWidth="0.6" opacity="0.3" />
-                  <line x1="370" y1="274" x2="416" y2="274" stroke="white" strokeWidth="0.6" opacity="0.28" />
-                  {/* Mist overlay */}
-                  <rect x="0" y="216" width="640" height="22" fill="rgba(234,230,220,0.22)" />
-                  {/* Walnut trees */}
-                  <circle cx="88" cy="252" r="14" fill="#3A4A34" opacity="0.6" />
-                  <rect x="86" y="258" width="4" height="16" fill="#5A4A2E" opacity="0.5" />
-                  <circle cx="100" cy="248" r="9" fill="#4A5A40" opacity="0.5" />
-                  <circle cx="555" cy="248" r="15" fill="#3A4A34" opacity="0.55" />
-                  <rect x="553" y="254" width="4" height="18" fill="#5A4A2E" opacity="0.5" />
-                  <circle cx="542" cy="244" r="10" fill="#4A5A40" opacity="0.5" />
-                </svg>
+                <img
+                  src="/walnut_farm.png"
+                  alt="Walnut Farm"
+                  className="w-full h-auto"
+                />
               </div>
 
               {/* Data grid below map */}
@@ -604,7 +563,7 @@ function QRSection() {
             <div className="relative">
               <div className="w-[180px] h-[180px] md:w-[220px] md:h-[220px] bg-paper border border-stone rounded-sm p-4 flex items-center justify-center shadow-[0_8px_32px_rgba(26,24,20,0.08)]">
                 <img
-                  src="/qr.png"
+                  src="/6ec081fee71297389ee0bef465f1ca46.png"
                   alt="Scan to discover Kashmir"
                   className="w-full h-full object-contain"
                 />
