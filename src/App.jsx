@@ -684,81 +684,24 @@ function WhyWalnut() {
    BREW'D SECTION — dark premium
 ───────────────────────────────────────────── */
 function BrewdSection() {
-  const [refL, inViewL] = useReveal()
-  const [refR, inViewR] = useReveal()
+  const [ref, inView] = useReveal()
 
   return (
-    <section id="brewd" className="py-24 md:py-36 bg-[#100E0A] px-6 md:px-12">
+    <section id="brewd" className="py-24 md:py-36 bg-paper px-6 md:px-12">
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-
-          {/* Image */}
-          <motion.div
-            ref={refR}
-            initial="hidden"
-            animate={inViewR ? 'show' : 'hidden'}
-            variants={fadeIn}
-            className="order-2 md:order-1 flex items-center justify-center relative"
-          >
-            <div className="absolute inset-0 bg-gradient-radial from-amber-900/20 via-transparent to-transparent rounded-full blur-3xl" />
-            <motion.img
-              src="/brewd.png"
-              alt="Brew'd Stroopwafel — Kashmir Walnut Fills"
-              className="relative z-10 w-full max-w-[440px] object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.5)]"
-              style={{ maxHeight: '70vh' }}
-              whileHover={{ scale: 1.03, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
-            />
-          </motion.div>
-
-          {/* Copy */}
-          <motion.div
-            ref={refL}
-            initial="hidden"
-            animate={inViewL ? 'show' : 'hidden'}
-            variants={stagger(0.1)}
-            className="order-1 md:order-2"
-          >
-            <motion.div variants={fadeUp} className="flex items-center gap-3 text-[10px] font-semibold tracking-widest2 uppercase text-warm mb-6">
-              <span className="w-6 h-px bg-warm flex-shrink-0" />
-              Brew'd · Stroopwafel
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="font-display text-[clamp(32px,4vw,58px)] font-semibold leading-[1.05] tracking-[-1.5px] text-[#F6F2EA] mb-6">
-              Walnut<br /><em className="text-gold">Fills.</em>
-            </motion.h2>
-            <motion.p variants={fadeUp} className="font-body text-[15px] leading-[1.82] text-[#F6F2EA]/45 font-light mb-5">
-              Place on your hot coffee cup. Let the Kashmir walnut and dark cocoa filling soften and melt. Then bite through the crispy waffle into warm, indulgent filling.
-            </motion.p>
-            <motion.p variants={fadeUp} className="font-body text-[15px] leading-[1.82] text-[#F6F2EA]/45 font-light mb-8">
-              A ritual of indulgence and nourishment — <strong className="font-medium text-[#F6F2EA]/70">rich in plant Omega-3</strong> from Kashmir walnut and sustained focus from dark cocoa's theobromine. Zero added sugar.
-            </motion.p>
-
-            {/* Mini macros */}
-            <motion.div variants={fadeUp} className="grid grid-cols-3 gap-px bg-white/6 border border-white/6 rounded-sm overflow-hidden mb-8">
-              {[
-                { v: '2.7g', l: 'Omega-3' },
-                { v: '4.5g', l: 'Protein' },
-                { v: '0g',   l: 'Added sugar' },
-              ].map((m, i) => (
-                <div key={i} className="bg-[#100E0A] py-4 text-center">
-                  <div className="font-display text-[22px] font-medium text-gold leading-none mb-1">{m.v}</div>
-                  <div className="font-body text-[8px] uppercase tracking-[0.16em] text-[#F6F2EA]/30">{m.l}</div>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="flex items-center gap-4">
-              <button
-                disabled
-                className="font-body text-[11px] font-semibold tracking-[0.14em] uppercase px-6 py-3.5 rounded-sm border border-white/15 text-[#F6F2EA]/40 cursor-not-allowed"
-              >
-                Out of Stock
-              </button>
-              <div className="font-display text-[20px] font-medium text-[#F6F2EA]/70">
-                ₹299 <span className="font-body text-[11px] text-[#F6F2EA]/30 font-light">/ 4 pieces</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          variants={fadeIn}
+          className="flex items-center justify-center"
+        >
+          <img
+            src="/WhatsApp Image 2026-05-11 at 14.39.03.jpeg"
+            alt="Made with Kashmiri walnuts — for your brain & heart."
+            className="w-full max-w-[800px] object-contain"
+          />
+        </motion.div>
       </div>
     </section>
   )
