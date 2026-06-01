@@ -270,8 +270,17 @@ function Hero() {
 /* ─────────────────────────────────────────────
    PRODUCT CARD COMPONENT
 ───────────────────────────────────────────── */
-function ProductCard({ img, tag, tagColor, name, nameItalic, desc, protein, omega3, price, delay = 0 }) {
+function ProductCard({ img, hoverImg, tag, tagColor, name, nameItalic, desc, protein, omega3, price, delay = 0 }) {
   const [ref, inView] = useReveal()
+  const [currentSrc, setCurrentSrc] = useState(img)
+
+  useEffect(() => setCurrentSrc(img), [img])
+
+  const handleEnter = () => {
+    if (hoverImg) setCurrentSrc(hoverImg)
+  }
+
+  const handleLeave = () => setCurrentSrc(img)
 
   return (
     <motion.div
@@ -301,8 +310,10 @@ function ProductCard({ img, tag, tagColor, name, nameItalic, desc, protein, omeg
 
         {/* Product image */}
         <motion.img
-          src={img}
+          src={currentSrc}
           alt={name}
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
           className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
           style={{ maxHeight: '320px' }}
         />
@@ -358,6 +369,7 @@ function Products() {
   const products = [
     {
       img:       '/proteen-green.png',
+      hoverImg:  '/proteen-green-2.png',
       tag:       'Original',
       tagColor:  'border-sage/30 text-sage bg-sage/7',
       name:      'proTeen',
@@ -370,6 +382,7 @@ function Products() {
     },
     {
       img:       '/proteen-brown.png',
+      hoverImg:  '/proteen-brown-2.png',
       tag:       '🌙 Night Mode',
       tagColor:  'border-ink/20 text-ink/60 bg-ink/5',
       name:      'proTeen',
@@ -382,6 +395,7 @@ function Products() {
     },
     {
       img:       '/brewd.jpeg',
+      hoverImg:  '/brewd-2.jpeg',
       tag:       'Brew\'d',
       tagColor:  'border-warm/40 text-warm bg-warm/8',
       name:      'Brew\'d',
